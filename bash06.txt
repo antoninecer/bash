@@ -1,0 +1,55 @@
+Rozpracovano 
+Bash 06
+
+Sada základních Linuxových příkazů
+----------------------------------
+
+Navigace a práce se soubory a složkami:
+ls: Vypíše obsah adresáře.
+cd: Přesune se do jiného adresáře.
+pwd: Zobrazí aktuální pracovní adresář.
+touch: Vytvoří prázdný soubor.
+mkdir: Vytvoří nový adresář.
+cp: Zkopíruje soubor nebo složku.
+mv: Přesune nebo přejmenuje soubor nebo složku.
+rm: Smaže soubor nebo složku.
+find: Hledá soubory a složky v adresáři.
+grep: Hledá text v souborech.
+
+Práce se soubory a textem:
+cat: Zobrazí obsah souboru.
+more nebo less: Prohlíží obsah souboru po částech.
+head a tail: Zobrazí horní nebo dolní části souboru.
+wc: Počítá slova, znaky a řádky v souboru.
+sort: Třídí řádky v souboru.
+
+Práce s procesy:
+ps: Zobrazí běžící procesy.
+top nebo htop: Zobrazí seznam běžících procesů v reálném čase.
+kill: Ukončí běžící proces.
+nice a renice: Kontroluje prioritu procesu.
+
+Síťování a komunikace:
+ping: Testuje dostupnost síťových zařízení.
+ifconfig nebo ip: Konfigurace síťových rozhraní.
+netstat: Zobrazí síťovou statistiku.
+ssh: Připojí se k vzdálenému serveru.
+scp: Kopíruje soubory mezi lokálním a vzdáleným systémem.
+ssh-keygen: Vygenerování klíčů
+ssh-copy-id: Nakopírování veřejného klíče na cílový serveru
+
+Správa uživatelů a oprávnění: - To už mám https://youtu.be/G7Ux9mX306c
+passwd: Mění heslo uživatele.
+useradd a userdel: Přidává a odebírá uživatele.
+chmod: Mění oprávnění souboru nebo složky.
+chown: Mění vlastníka souboru nebo složky.
+sudo: Spouští příkazy s oprávněními superuživatele.
+getfacl a setfacl: rozšířená oprávnění
+
+Správa balíčků (zavislostí):
+apt-get nebo yum: Správce balíčků pro instalaci a aktualizaci softwaru.
+
+Roury (pipes) a přesměrování:
+|: Předává výstup z jednoho příkazu jako vstup do dalšího.
+
+> a <: Přesměrovává vstup a výstup příkazů.
