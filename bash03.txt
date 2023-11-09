@@ -1,0 +1,55 @@
+Bash kurz 03
+
+https://www.youtube.com/@CzechITHub
+
+Co jsme se naučili:
+1. Co je bash, prikaz, argumenty, spouštění příkazu, vytvoření prvního skriptu, pipeline, grep, tee, 
+redirect, errorlevel, vice příkazu na jeden řádce (středník nebo && ) /dev/null
+https://youtu.be/kBibCSsPXAA
+
+2. základní pravidla psani textu, escapovani, promenne v bash scriptu a promenne v prostredi, 
+iniciace prostredi, specialni promenne, prace s poly
+https://youtu.be/U4yepKRJEPQ
+
+Co příjde teď:
+Konečně si zascriptujem Vstup z klávesnice read, podmínky if elseif, muj script na kopirovani videí
+https://github.com/antoninecer/bash/blob/main/video.sh
+
+
+if [[ conditions ]]; then
+   # Things
+elif [[ other_conditions ]]; then
+   # Other things
+else
+   # In case none of the above occurs
+fi
+
+Nejběžnější znakové přepínače
+		-lt: Méně než (less than).   $a &lt; $b 
+		-gt: Větší než (greater than). $a &gt; $b
+		-le: Menší nebo rovno (less than or equal). $a &lt;= $b
+		-ge: Větší nebo rovno (greater than or equal). $a &gt;= $b
+		-eq: Rovno (equals).  ==
+		-ne: Nerovno (not equals). !=
+		-z: Prázdný řetězec (zero length).
+		-n: Nenulový řetězec (non-zero length).
+		-f: Existuje a je to regulární soubor.
+		-d: Existuje a je to adresář (directory).
+		-e: Existuje (exist).
+		-r: Je čitelný (readable).
+		-w: Je zapisovatelný (writable).
+		-x: Je spustitelný (executable).
+		-s: Má nenulovou velikost (size).
+		-h nebo -L: Symbolický odkaz (symbolic link).
+		-p: Named pipe.
+		-S: Socket.
+		-b: Blokové zařízení (block device).
+		-c: Znakové zařízení (character device).
+		-t: Je připojeno k terminálu.
+		-u: Je vlastníkem (user-owned).
+
+
+if [ $a -lt $b ]; then
+    echo "$a je menší než $b"
+fi
+

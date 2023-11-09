@@ -1,0 +1,170 @@
+Bash kurz 02
+
+https://guide.bash.academy/
+
+odkaz na muj kanal, budu rad, kdyz date sledovani, at vim, ze to pro nekoho delam :)
+https://www.youtube.com/@CzechITHub
+
+Krátké shrnutí z minula:
+Co je bash, prikaz, argumenty, spouštění příkazu, vytvoření prvního skriptu, pipeline, grep, tee, 
+redirect, errorlevel, vice příkazu na jeden řádce (středník nebo && ) /dev/null
+A řekli jsme si o existenci byobu  https://cs.wikipedia.org/wiki/Byobu
+https://youtu.be/kBibCSsPXAA
+
+Co příjde teď:
+základní pravidla psani textu, escapovani, promenne v bash scriptu a promenne v prostredi, iniciace prostredi, specialni promenne, prace s poly
+
+
+základní pravidla
+pokud chceme používat text a v něm proměnné, musí být v klaických uvozovkách " něco ${promenna}"
+tilda ~ domaci adresar
+prochazeni adresaru vzhledem k aktualnimu adresari nadrazene slozky, podslozky a soubory v nich
+escapovani charakteru, ktere maji zvlastni vyznam 
+(což znamená vložit zpětné lomítko \ před) některé znaky, abyste mohli použít speciální znaky nebo adresáře, 
+které by jinak způsobily problémy nebo byly interpretovány jinak. Zde je několik příkladů escapování znaků v Bashu:
+
+Použití zpětného lomítka \ pro escapování:
+Zpětné lomítko (\): Pokud chcete vypsat znak zpětného lomítka, musíte ho escapovat dvojitým zpětným lomítkem (\\).
+
+Jednoduché uvozovky ('): Pokud chcete vypsat znak jednoduchých uvozovek, musíte ho escapovat zpětným lomítkem (\').
+
+Dvojité uvozovky ("): Pokud chcete vypsat znak dvojitých uvozovek, musíte ho escapovat zpětným lomítkem (\").
+
+Znaky dolár ($) a znak vlnovky (~): Tyto znaky mohou mít speciální význam v určitých kontextech. 
+Pokud je chcete vypsat jako běžné znaky, můžete je escapovat zpětným lomítkem (\$ a \~).
+
+Znak vykřičníku (!): V některých příkazech a skriptech může mít znak vykřičníku speciální význam. 
+Chcete-li ho vypsat jako běžný znak, můžete ho escapovat zpětným lomítkem (\!).
+
+Znak procenta (%): V některých kontextech může mít znak procenta speciální význam. 
+Chcete-li ho vypsat jako běžný znak, můžete ho escapovat zpětným lomítkem (\%).
+
+Proměnné v Bashi
+----------------
+přiřazení 
+promenna=hodnota
+pristup k promenne $promenna , nebo ${promenna}
+
+typy promennych:
+V Bashu není booleovský datový typ jako v některých jiných jazycích. Boolean hodnoty jsou obvykle reprezentovány jako čísla, kde 0 znamená "false" 
+a jakékoli nenulové číslo znamená "true". Například:
+is_enabled=1  # true
+is_disabled=0 # false
+
+řetězce
+name="John"
+message="Hello, $name!"
+
+Číselné proměnné
+count=10
+result=$((count * 2))
+
+Pole (array) proměnné
+V Bashi můžete také vytvářet pole, což jsou kolekce hodnot. 
+Pole může obsahovat různé datové typy, včetně boolean, textových a číselných hodnot. Například:
+
+# Deklarace pole
+fruits=("Jablko" "Banán" "Hruška" "Kiwi" "Třešeň")
+
+# Přístup k prvkům pole pomocí indexu
+echo "První ovoce: ${fruits[0]}"   # Vypíše první prvek pole
+echo "Druhé ovoce: ${fruits[1]}"   # Vypíše druhý prvek pole
+
+# Délka pole
+echo "Počet ovoce: ${#fruits[@]}"  # Vypíše počet prvků v poli
+
+# Iterace přes pole
+echo "Všechno ovoce:"
+for fruit in "${fruits[@]}"; do
+    echo "$fruit"
+done
+
+# Přidání prvku na konec pole
+fruits+=("Hrozny")
+
+# Aktualizace prvku v poli
+fruits[2]="Švestka"
+
+# Výpis celého pole po změnách
+echo "Aktualizované ovoce:"
+for fruit in "${fruits[@]}"; do
+    echo "$fruit"
+done
+
+
+Asociativní pole (associative array - klic-hodnota) proměnné:
+Bash podporuje také asociativní pole, která umožňují mapování klíčů na hodnoty. Asociativní pole může obsahovat textové a číselné hodnoty. Například:
+# Definice asociativního pole
+declare -A telefonni_seznam
+
+# Přidání prvků do asociativního pole
+telefonni_seznam["Jan"]="123-456-789"
+telefonni_seznam["Eva"]="987-654-321"
+telefonni_seznam["Petr"]="555-555-555"
+
+# Přístup k hodnotám pomocí klíčů
+echo "Telefonní číslo Jana: ${telefonni_seznam["Jan"]}"
+echo "Telefonní číslo Evy: ${telefonni_seznam["Eva"]}"
+
+Bash je však dynamicky typovaný jazyk, což znamená, že nemusíte předem deklarovat typ proměnné,
+ a proměnné mohou měnit svůj typ během běhu programu.
+
+
+Proměnné prostředí
+------------------
+env - vypis
+export promenna=hodnota - pripraveni promenne do prostredi pro dalsi programy mimo nas script
+
+Iniciace prostředí v bash
+-------------------------
+při přihlášení se spustí scripty, které jsou v každém domovském adresáři, které jsou do něj vkopírovány z kostlivce  /etc/skel
+prvni se spusti .profile v nem se vetsinou spusti .bashrc a muzou se v nem definovat cesty a promenne
+
+.bashrc se spustí interaktivní non-login shell. To znamená, že se použije při každém novém otevření terminálu nebo při spuštění nového podshellu
+ (například při spuštění skriptu). Ve skriptu .bashrc můžete nastavit vlastní preference pro Bash shell, jako jsou aliasy, funkce, 
+ proměnné prostředí a další konfigurace, které chcete mít k dispozici při práci v shellu.
+
+source: source je příkaz v Bashi, který se používá k načtení a provedení obsahu jiného souboru nebo skriptu do aktuálního shellu. Pokud použijete příkaz source následovaný názvem souboru, takový soubor je proveden v kontextu aktuálního shellu a může nastavit nebo změnit proměnné prostředí a konfigurace.
+source ~/.bashrc
+Toto je užitečné, pokud jste provedli změny v konfiguraci a chcete je okamžitě použít, aniž byste museli zavřít a znovu otevřít terminál.
+
+Celkově říkajíce, .profile a .bashrc jsou inicializační skripty, které vám umožňují nastavit a konfigurovat své prostředí pro interaktivní
+ a non-login shelly v Bashu. Použití příkazu source vám umožňuje načíst a provést obsah těchto skriptů v aktuálním shellu.
+
+
+Specialni promenne/parametry
+--------------------
+$* - to je soupis vsech predanych parametru oddeleny mezerou
+$@ - to je to same, ale kdyz je jeden, nebo vic argumentu "viceslovny retezec" , tak tento zachova iteraci pro tyto viceslovne retezce
+Základní rozdíl spočívá v tom, jak se proměnné $* a $@ chovají, když argumenty obsahují mezery nebo jiné speciální znaky. 
+$* sloučí všechny argumenty do jednoho řetězce, zatímco $@ zachová argumenty jako samostatné položky v seznamu. 
+Ve většině případů je lepší používat $@, protože zachovává strukturu argumentů a může se chovat předvídatelněji.
+
+$# - pocet argumentu
+$? - errorlevel predchoziho spusteneho prikazu
+$$ - cislo procesu prave beziciho kodu
+
+obsah souboru prvni:
+#! /usr/bin/bash
+#echo "odkud se spousti: $0"
+#echo "prvni parametr: $1"
+#echo "druhy parametr: $2"
+
+# toto je nahled na soubor v podadresari
+#cat ./funkce/funkce1
+# toto je nahled na soubor v pdrazenem adresari
+#cat ../lorem
+
+echo "specialni \$* : $*"
+echo "specialni \$@ : $@"
+echo "specialni \$# : $#"
+echo "specialni \$? : $?"
+echo "specialni \$\$ : $$"
+
+
+
+for param in "$@"
+do
+        echo " parametr: $param"
+done
+

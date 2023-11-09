@@ -1,0 +1,36 @@
+https://guide.bash.academy/
+
+odkaz na video s Oracle Cloudem, kde jsem ukazoval jak se instaluje linux free
+https://www.youtube.com/watch?v=OT75RM_t9zk&t=207s
+
+
+
+echo "$BASH_VERSION"
+sudo apt install byobu
+
+prikaz prvniagument druhyargument tretiargument 
+
+$1 prvniagument
+$2 druhyargument
+
+$0
+
+Pipeline - predavani vysledku do dalsiho programu k naslenemu zpracovani
+cat lorem | grep er | grep Aenean | tee vycuc | grep dolore 
+
+List prikazu, nptej se a makej 
+cat vycuc ; cat /etc/os-release
+
+vypis errorlevel posledniho spusteneho prikazu
+echo $?
+spust cat soubor a kdyz to projde spust cat dalsiho souboru
+cat vycuc && cat /etc/os-release
+
+cat vycuc1 && cat /etc/os-release
+pri neexistenci, nebo jine chybe neprovede nasledujici prikaz
+
+presmerovani vystupu do souboru
+> prepise
+>> prida na konec
+/dev/null cerna dira
+

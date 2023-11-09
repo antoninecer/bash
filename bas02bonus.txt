@@ -1,0 +1,38 @@
+bonus ke kapitole 2
+Zajimave moznosti prace s textem
+${parameter#pattern} - Odstraní nejkratší shodující se vzor z počátku hodnoty.
+url='https://guide.bash.academy/variables.html'
+trimmed=${url#*/}  # Odstraní vše před prvním lomítkem
+echo $trimmed
+guide.bash.academy/variables.html
+
+${parameter##pattern} - Odstraní nejdelší shodující se vzor z počátku hodnoty.
+url='https://guide.bash.academy/variables.html'
+trimmed=${url##*/}  # Odstraní vše před posledním lomítkem
+echo $trimmed
+variables.html
+
+${parameter%pattern} - Odstraní nejkratší shodující se vzor z konce hodnoty.
+url='https://guide.bash.academy/variables.html'
+trimmed=${url%/*}  # Odstraní vše za posledním lomítkem
+echo $trimmed
+https://guide.bash.academy
+
+${parameter%%pattern} - Odstraní nejdelší shodující se vzor z konce hodnoty.
+url='https://guide.bash.academy/variables.html'
+trimmed=${url%%/*}  # Odstraní vše za prvním lomítkem
+echo $trimmed
+https:
+
+${parameter/pattern/replacement} - Nahradí první shodující se vzor za náhradu.
+url='https://guide.bash.academy/variables.html'
+replaced=${url/./-}  # Nahradí první tečku za pomlčku
+echo $replaced
+https://guide-bash.academy/variables.html
+
+${parameter//pattern/replacement} - Nahradí všechny výskyty vzoru za náhradu.
+url='https://guide.bash.academy/variables.html'
+replaced=${url//./-}  # Nahradí všechny tečky za pomlčky
+echo $replaced
+https://guide-bash-academy/variables-html
+

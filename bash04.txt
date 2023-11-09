@@ -1,0 +1,130 @@
+Bash kurz 04
+https://github.com/antoninecer/bash
+https://www.youtube.com/@CzechITHub
+
+Co jsme se naučili:
+1. Co je bash, prikaz, argumenty, spouštění příkazu, vytvoření prvního skriptu, pipeline, grep, tee, 
+redirect, errorlevel, vice příkazu na jeden řádce (středník nebo && ) /dev/null
+https://youtu.be/kBibCSsPXAA
+
+2. základní pravidla psani textu, escapovani, promenne v bash scriptu a promenne v prostredi, 
+iniciace prostredi, specialni promenne, prace s poly
+https://youtu.be/U4yepKRJEPQ
+
+3.
+Vstup z klávesnice read, podmínky if elseif, for, while 
+https://youtu.be/XWUCpt7I0V4
+
+Co příjde teď:
+probereme cykly for while until
+
+For cyklus s inkrementovanou proměnnou:
+---------------------------------------
+Tento typ for cyklu se používá, když chcete provádět určitý kód po určitý početkrát 
+a při každé iteraci měnit hodnotu proměnné. Tento cyklus se často používá pro známý počet iterací.
+
+for ((i = 1; i <= 5; i++))
+do
+    echo "Iterace číslo $i"
+done
+
+V tomto případě bude kód proveden 5krát, a v každé iteraci se hodnota proměnné i zvýší o 1.
+
+For cyklus procházející pole:
+-------------------------------
+Tento typ for cyklu se používá, když chcete provádět určitý kód pro každý prvek v poli (nebo seznamu)
+a nemusíte mít znalost počtu prvků v poli. Tento cyklus se často používá pro dynamický seznam prvků.
+
+fruits=("jabko" "hruška" "broskev")
+for fruit in "${fruits[@]}"
+do
+    echo "Ovoce: $fruit"
+done
+
+V tomto případě bude kód proveden pro každý prvek v poli fruits
+a proměnná fruit bude obsahovat hodnotu každého prvku v průběhu cyklu.
+
+Rozdíl spočívá v tom, že první typ for cyklu se používá pro známý počet opakování s inkrementovanou proměnnou,
+zatímco druhý typ for cyklu je vhodný pro průchod dynamickým seznamem prvků v poli. 
+Použijte ten, který nejlépe vyhovuje vašim potřebám a konkrétním úkolům, které chcete provést v cyklu.
+
+While cyklus:
+-------------
+while cyklus provádí určitý blok kódu, dokud je určená podmínka pravdivá (true).
+Pokud je podmínka na začátku nepravdivá (false), blok kódu se vůbec nevykoná.
+Typicky se používá, když chcete provádět kód, dokud nějaká podmínka zůstává platná.
+
+counter=1
+while [ $counter -le 5 ]
+do
+    echo "Iterace číslo $counter"
+    counter=$((counter+1))
+done
+
+Tento cyklus bude provádět kód, dokud je hodnota counter menší nebo rovna 5.
+
+My jsme v minulé lekci však použili tuto možnost, tedy probereme si jak to funguje:
+
+while true
+do
+    # Tělo smyčky
+    echo "Tato smyčka bude opakovat, dokud nebude použit příkaz break."
+    
+    # Nějaká podmínka, která určuje, kdy má smyčka skončit
+    if [ něco = "něco" ]
+    then
+        break
+    fi
+done
+
+
+Until cyklus:
+-------------
+until cyklus provádí určitý blok kódu, dokud je určená podmínka nepravdivá (false).
+Pokud je podmínka na začátku pravdivá (true), blok kódu se vůbec nevykoná.
+Typicky se používá, když chcete provádět kód, dokud nějaká podmínka neplatí.
+
+counter=1
+until [ $counter -gt 5 ]
+do
+    echo "Iterace číslo $counter"
+    counter=$((counter+1))
+done
+
+Tento cyklus bude provádět kód, dokud je hodnota counter menší než 5. 
+Jakmile je hodnota counter větší než 5, cyklus skončí.
+
+Rozdíl mezi while a until spočívá v tom, jakým způsobem určujete ukončení cyklu:
+- while cyklus končí, když podmínka zůstává pravdivá (true). 
+To znamená, že provádění cyklu pokračuje, dokud je podmínka pravdivá.
+- until cyklus končí, když podmínka zůstává nepravdivá (false). 
+To znamená, že provádění cyklu pokračuje, dokud je podmínka nepravdivá.
+
+Kterého typu cyklu použijeme záleží na tom, jaký příklad řešíme, obvykle záleží na náladě programátora, 
+pokud se budeme drbat levou nohou za pravým uchem, asi to také bude fungovat, ale:
+- for cyklus s inkrementující proměnnou použijeme tehdy,
+  když chceme něco indexovat(ukazovat na daný index komplexnější proměnné)
+- while a until cykly použijeme v případě, kdy nevíme přesně s jakým vším čím prapodivnem se potkáme, dále řešíme 
+  v těle cyklu větvení typu if / case a to si probereme v dalším díle :)
+  
+Tady už by bylo vhodné dát Vám malý úkol.
+Ale nerad vymýšlím úplné blbosti, tedy zamyslete se nad tím co by jste chtěli udělat, jen se zatím vyhněme ukládáním 
+hodnot do databáze :) 
+Co by jste měli použít? 
+- používejte komentáře #, nejdřív si napište pseudokód pomocí komentářů, jak by měl program fungovat,
+  pak teprve pište program
+- nezapomeňte na první řádek s určením interpretu #! /bin/bash
+- definujte si nějaké pole a hrajte si s ním, procházejte, přidávejte nové hodnoty
+- Vstup z klávesnice read pro zadání třeba jména, nebo výběru z nabídky viz minulá lekce.
+- kombinaci cyklů while/for nebo until/for
+- rozhodovací podmínky if/elif/else 
+- můžete si odzkoušet vypsat pid tohoto programu $$, to kdyby jste se n2kde zasekli, abyjste mohli kill -9 pid
+- při nějakém rozhodování když program ukončíte, použijte návratovou hodnotu exit x 
+  a pokud jich použijete víc jak 1, konkrétně exit 1, pak popište co ktery exit kod znamená do komentáře,
+  múžete tím pak řídit běh dalších programů, ale to je vyšší dívčí :)
+
+Pochlubte se na gitu :)
+Napište mi komentář 
+
+  
+
