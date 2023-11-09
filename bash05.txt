@@ -1,0 +1,60 @@
+Bash kurz 05
+https://github.com/antoninecer/bash
+https://www.youtube.com/@CzechITHub
+
+Co jsme se naučili:
+1. Co je bash, prikaz, argumenty, spouštění příkazu, vytvoření prvního skriptu, pipeline, grep, tee, 
+redirect, errorlevel, vice příkazu na jeden řádce (středník nebo && ) /dev/null
+https://youtu.be/kBibCSsPXAA
+
+2. základní pravidla psani textu, escapovani, promenne v bash scriptu a promenne v prostredi, 
+iniciace prostredi, specialni promenne, prace s poly
+https://youtu.be/U4yepKRJEPQ
+
+3.
+Vstup z klávesnice read, podmínky if elseif, for, while 
+https://youtu.be/XWUCpt7I0V4
+
+4.
+cykly for, while, until
+https://youtu.be/53dRZkqM73Q
+
+
+Co teď?
+složitější rozhodování Case , je to mnohem košatější, než-li if/elif/else, hodí se tam,
+ kde je více možných hodnot( například kalendář-dny/měsíce, modely aut a td)
+
+
+Příkaz case umožňuje provádět různé akce na základě hodnoty proměnné. Je to užitečné,
+když chcete provádět různé operace na základě různých možných hodnot.
+
+case hodnota in
+    možnost1)
+        # Akce pro možnost1
+        ;;
+    možnost2)
+        # Akce pro možnost2
+        ;;
+    možnost3)
+        # Akce pro možnost3
+        ;;
+    *)
+        # Akce, která se provede, pokud žádná z možností neplatí (volitelné)
+        ;;
+esac
+
+
+hodnota - Proměnná nebo výraz, který chcete porovnávat s možnostmi.
+možnost1, možnost2, atd. - Možnosti, které chcete porovnat s hodnotou.
+;; - Označuje konec akce pro každou možnost.
+*) (volitelně) - Toto je výchozí akce, která se provede, pokud žádná z možností neplatí.
+
+
+
+Tady mám další úkol.
+Úkol z dílu 4 zkopírujte, ale místo podmínek if/elif/else použijte case
+Pochlubte se na gitu :)
+Napište mi komentář 
+
+  
+
