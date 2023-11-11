@@ -1,0 +1,29 @@
+tonda@test:~/work/06$ cat existuje.sh
+#! /bin/bash
+# ocekavame soubor test
+if [[ -f "test" ]]
+then
+        echo "soubor test existuje a ja se podle toho zaridim"
+        exit
+else
+        echo "soubor test nenalezen, koncim s chybou"
+        exit 1
+fi
+
+tonda@test:~/work/06$ cat existuje.sh
+#! /bin/bash
+# ocekavame soubor test
+if [[ -f "test" ]]
+then
+        echo "soubor test existuje a ja se podle toho zaridim"
+        exit
+else
+        echo "soubor test nenalezen, koncim s chybou"
+        exit 1
+fi
+
+./navrat.sh ; echo $?
+./navrat.sh cokoliv; echo $?
+./navrat.sh cokoliv && echo "script skončil v pořádku" || echo "beh scriptu skončil chybou"
+
+./existuje.sh && echo "je to tu" || echo "neni to tu"
