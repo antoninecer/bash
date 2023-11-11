@@ -1,55 +1,64 @@
-Rozpracovano 
 Bash 06
+https://github.com/antoninecer/bash
+https://www.youtube.com/@CzechITHub
+
+Co jsme se naučili:
+1. Co je bash, prikaz, argumenty, spouštění příkazu, vytvoření prvního skriptu, pipeline, grep, tee, 
+redirect, errorlevel, vice příkazu na jeden řádce (středník nebo && ) /dev/null
+https://youtu.be/kBibCSsPXAA
+
+2. základní pravidla psani textu, escapovani, promenne v bash scriptu a promenne v prostredi, 
+iniciace prostredi, specialni promenne, prace s poly
+https://youtu.be/U4yepKRJEPQ
+
+3.
+Vstup z klávesnice read, podmínky if elseif, for, while 
+https://youtu.be/XWUCpt7I0V4
+
+4.
+cykly for, while, until
+https://youtu.be/53dRZkqM73Q
+
+5.
+rozhodování case
+https://youtu.be/VZUZS87Hn5Q
+
 
 Sada základních Linuxových příkazů
 ----------------------------------
 
 Navigace a práce se soubory a složkami:
-ls: Vypíše obsah adresáře.
-cd: Přesune se do jiného adresáře.
+ls -la: Vypíše obsah adresáře.
 pwd: Zobrazí aktuální pracovní adresář.
-touch: Vytvoří prázdný soubor.
+cd: Přesune se do jiného adresáře. (bez parametru = home)
 mkdir: Vytvoří nový adresář.
-cp: Zkopíruje soubor nebo složku.
+touch: Vytvoří prázdný soubor.
+cp: Zkopíruje soubor nebo složku. 
 mv: Přesune nebo přejmenuje soubor nebo složku.
 rm: Smaže soubor nebo složku.
 find: Hledá soubory a složky v adresáři.
 grep: Hledá text v souborech.
+chmod: nastevi opravneni (jen vlastni/root)
 
-Práce se soubory a textem:
+Práce se soubory a textem: - 
 cat: Zobrazí obsah souboru.
 more nebo less: Prohlíží obsah souboru po částech.
 head a tail: Zobrazí horní nebo dolní části souboru.
 wc: Počítá slova, znaky a řádky v souboru.
 sort: Třídí řádky v souboru.
+awk: vyber sloupcu
 
-Práce s procesy:
-ps: Zobrazí běžící procesy.
-top nebo htop: Zobrazí seznam běžících procesů v reálném čase.
-kill: Ukončí běžící proces.
-nice a renice: Kontroluje prioritu procesu.
-
-Síťování a komunikace:
-ping: Testuje dostupnost síťových zařízení.
-ifconfig nebo ip: Konfigurace síťových rozhraní.
-netstat: Zobrazí síťovou statistiku.
-ssh: Připojí se k vzdálenému serveru.
-scp: Kopíruje soubory mezi lokálním a vzdáleným systémem.
-ssh-keygen: Vygenerování klíčů
-ssh-copy-id: Nakopírování veřejného klíče na cílový serveru
-
-Správa uživatelů a oprávnění: - To už mám https://youtu.be/G7Ux9mX306c
-passwd: Mění heslo uživatele.
-useradd a userdel: Přidává a odebírá uživatele.
-chmod: Mění oprávnění souboru nebo složky.
-chown: Mění vlastníka souboru nebo složky.
-sudo: Spouští příkazy s oprávněními superuživatele.
-getfacl a setfacl: rozšířená oprávnění
+cat /etc/passwd
+cat /etc/passwd|awk -F: '{print $3, $1}'
+cat /etc/passwd|awk -F: '{print $3, $1}'|sort
+cat /etc/passwd|awk -F: '{print $3, $1}'|sort -n
 
 Správa balíčků (zavislostí):
-apt-get nebo yum: Správce balíčků pro instalaci a aktualizaci softwaru.
-
-Roury (pipes) a přesměrování:
-|: Předává výstup z jednoho příkazu jako vstup do dalšího.
-
-> a <: Přesměrovává vstup a výstup příkazů.
+apt-get/apt nebo yum: Správce balíčků pro instalaci a aktualizaci softwaru.
+ 
+apt install název_balíčku: Tento krok slouží k instalaci určitého balíčku do vašeho systému. 
+apt remove název_balíčku: Po úspěšné instalaci balíčku můžete použít tento krok k odstranění balíčku ze systému. 
+ Balíček bude odinstalován, ale konfigurační soubory nebudou smazány.
+apt purge název_balíčku: Tento krok odstraní balíček spolu s jeho konfiguračními soubory.
+ Pokud chcete, aby byl balíček úplně odstraněn ze systému, včetně všech konfiguračních souborů, použijte apt purge.
+apt autoremove: Tento krok provede automatickou odinstalaci balíčků, které byly instalovány jako závislosti a již nejsou potřebné pro žádný jiný balíček. Tím můžete uvolnit místo na disku a udržovat systém čistý.
