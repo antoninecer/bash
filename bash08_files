@@ -1,0 +1,59 @@
+funkce01.sh
+#! /bin/bash
+# Definice pole
+my_array=("prvni" "druhy" "treti" "ctvrty" "paty" "prvni" "druhy")
+# Index prvku, který chcete odebrat
+index_to_remove=2
+# Odebrání prvku z pole
+unset my_array[$index_to_remove]
+# Výpis pole bez odebraného prvku
+echo "Pole obsahuje: ${my_array[@]}"
+# sorted array
+sorted_array=$(echo "${my_array[@]}" | tr ' ' '\n' | sort)
+echo "Serazene pole: ${sorted_array[@]}"
+echo "nase pole: ${my_array[@]}"
+unique_array=()
+for item in "${my_array[@]}"
+do
+  if [[ ! " ${unique_array[@]} " =~ " $item " ]]; then
+      unique_array+=("$item")
+  fi
+done
+echo "zredukovane pole o duplicity: ${unique_array[@]}"
+
+
+funkce02.sh
+#!/bin/bash
+# Kontrola, zda byl skript spuštěn s přesně dvěma parametry
+if [ "$#" -ne 2 ]; then
+  echo "Chyba: Skript vyžaduje přesně dva parametry."
+  echo "Použití: $0 input_file output_file"
+  exit 1
+fi
+
+# Přiřazení parametrů k proměnným
+input_file="$1"
+output_file="$2"
+
+# Funkce pro odstranění duplicitních řádků
+function odstranit_duplikaty {
+  local input="$1"
+  local output="$2"
+  local unique_lines=()
+  # Přečtěte vstupní soubor řádek po řádku a odstraňte duplicity
+  while IFS= read -r line; do
+    if [[ ! " ${unique_lines[@]} " =~ " $line " ]]; then
+      unique_lines+=("$line")
+    fi
+  done < "$input"
+  # Výstup uložte do výstupního souboru
+  for unique_line in "${unique_lines[@]}"; do
+    echo "$unique_line" >> "$output"
+  done
+}
+
+# Volání funkce pro odstranění duplikátů
+odstranit_duplikaty "$input_file" "$output_file"
+
+# Výpis výsledku
+echo "Duplikáty byly odstraněny z $input_file a výsledek byl uložen do $output_file."
