@@ -1,0 +1,65 @@
+https://github.com/antoninecer/bash
+https://www.youtube.com/@CzechITHub
+
+Co jsme se naučili:
+1. Co je bash, prikaz, argumenty, spouštění příkazu, vytvoření prvního skriptu, pipeline, grep, tee, redirect, errorlevel, vice příkazu na jeden řádce (středník nebo && ) /dev/null
+https://youtu.be/kBibCSsPXAA
+
+2. Základní pravidla psani textu, escapovani, promenne v bash scriptu a promenne v prostredi, iniciace prostredi, specialni promenne, prace s poly
+https://youtu.be/U4yepKRJEPQ
+
+3. Vstup z klávesnice read, podmínky if elseif, for, while
+https://youtu.be/XWUCpt7I0V4
+
+4. Cykly for, while, until
+https://youtu.be/53dRZkqM73Q
+
+5. Rozhodování case
+https://youtu.be/VZUZS87Hn5Q
+
+6. Navigace a práce se soubory a složkami, práce se soubory a textem,správa balíčků
+https://youtu.be/3nFoDaK3RL8
+
+7. Sled příkazů v závislosti na návratové hodnotě
+https://youtu.be/psJCJS4SoUo
+
+Dnes si dáme 
+Funkce a práce s poly
+
+Funkce v Bashu jsou bloky kódu, které můžete definovat a znovu používat v rámci svého skriptu. (direkce function muze byt vypustena)
+
+function nazev_funkce {
+  # Tělo funkce
+  # Příkazy a kód funkce
+}
+
+Funkcím můžete předat argumenty tak, že je uvedete v závorkách při volání funkce.
+V rámci funkce můžete argumenty zpracovávat pomocí proměnných, stejně jako by se jednalo o předané parametry scriptu.
+
+Funkce může pracovat s proměnnými definovanými mimo ni, ale pokud chcete, aby funkce měla lokální proměnné, měli byste je deklarovat pomocí klíčového slova local. Lokální proměnné jsou dostupné pouze v rámci dané funkce.
+
+Použití proměnných v návratovém kódu je spíše omezené.
+Pokud potřebujete vrátit více informací, můžete použít standardní výstup (echo) nebo návratové hodnoty v podobě kódu
+
+Můžete ovlivnit proměnnou typu pole, která byla definována ve skriptu, pokud máte správné práva k této proměnné.
+
+V Bashi jsou pole globální proměnné a jsou dostupné ve všech částech skriptu, včetně funkcí.
+
+Vrátím se k polím:
+# Definice pole
+my_array=("prvni" "druhy" "treti" "ctvrty" "paty")
+# Index prvku, který chcete odebrat
+index_to_remove=2
+# Odebrání prvku z pole
+unset my_array[$index_to_remove]
+# Výpis pole bez odebraného prvku
+echo "Pole obsahuje: ${my_array[@]}"
+# Řazení pole
+sorted_array=$(echo "${my_array[@]}" | tr ' ' '\n' | sort)
+# Odstranění duplicity
+unique_array=()
+for item in "${my_array[@]}"; do
+  if [[ ! " ${unique_array[@]} " =~ " $item " ]]; then
+    unique_array+=("$item")
+  fi
+done
