@@ -36,3 +36,35 @@ replaced=${url//./-}  # Nahradí všechny tečky za pomlčky
 echo $replaced
 https://guide-bash-academy/variables-html
 
+bash
+Copy code
+text1="Ahoj"
+text2="Ahoj světe"
+
+if [[ $text1 == $text2 ]]; then
+    echo "Texty jsou stejné."
+else
+    echo "Texty nejsou stejné."
+fi
+Zjištění, zda proměnná obsahuje určitý řetězec:
+
+bash
+Copy code
+text="Ahoj světe"
+
+if [[ $text == *"Ahoj"* ]]; then
+    echo "Proměnná obsahuje řetězec 'Ahoj'."
+else
+    echo "Proměnná neobsahuje řetězec 'Ahoj'."
+fi
+Porovnání prvních čtyř znaků textu s určitým řetězcem:
+
+bash
+Copy code
+text="Ahoj světe"
+
+if [[ "${text:0:4}" == "Ahoj" ]]; then
+    echo "Prvních čtyři znaky je 'Ahoj'."
+else
+    echo "Prvních čtyři znaky není 'Ahoj'."
+fi
