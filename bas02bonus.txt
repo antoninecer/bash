@@ -1,43 +1,40 @@
-bonus ke kapitole 2
-Zajimave moznosti prace s textem
-${parameter#pattern} - Odstraní nejkratší shodující se vzor z počátku hodnoty.
-url='https://guide.bash.academy/variables.html'
+#! /bin/bash
+clear
+#${parameter#pattern} - Odstraní nejkratší shodující se vzor z počátku hodnoty.
+url="https://velka.obrazkova.kniha.cz/prdolin_jede_do_sveta"
+echo "puvodni retezec: ${url}"
+read -p "parameter#pattern  promenna#*/  Odstraní vše před prvním lomítkem" a
+
 trimmed=${url#*/}  # Odstraní vše před prvním lomítkem
 echo $trimmed
-guide.bash.academy/variables.html
 
-${parameter##pattern} - Odstraní nejdelší shodující se vzor z počátku hodnoty.
-url='https://guide.bash.academy/variables.html'
+read -p "parameter##pattern promenna##*/  Odstraní nejdelší shodující se vzor z počátku hodnoty" a
+#${parameter##pattern} - Odstraní nejdelší shodující se vzor z počátku hodnoty.
 trimmed=${url##*/}  # Odstraní vše před posledním lomítkem
 echo $trimmed
-variables.html
 
-${parameter%pattern} - Odstraní nejkratší shodující se vzor z konce hodnoty.
-url='https://guide.bash.academy/variables.html'
+read -p "parameter%pattern promenna%/*  Odstraní vše za posledním lomítkem" a
+#${parameter%pattern} - Odstraní nejkratší shodující se vzor z konce hodnoty.
 trimmed=${url%/*}  # Odstraní vše za posledním lomítkem
 echo $trimmed
-https://guide.bash.academy
 
-${parameter%%pattern} - Odstraní nejdelší shodující se vzor z konce hodnoty.
-url='https://guide.bash.academy/variables.html'
+read -p "parameter%%pattern promenna%%/*  Odstraní vše za prvním lomítkem" a
+#${parameter%%pattern} - Odstraní nejdelší shodující se vzor z konce hodnoty.
 trimmed=${url%%/*}  # Odstraní vše za prvním lomítkem
 echo $trimmed
-https:
 
-${parameter/pattern/replacement} - Nahradí první shodující se vzor za náhradu.
-url='https://guide.bash.academy/variables.html'
+read -p "parameter/pattern/replacement  promenna/./-  Nahradí první tečku za pomlčku" a
+#${parameter/pattern/replacement} - Nahradí první shodující se vzor za náhradu.
 replaced=${url/./-}  # Nahradí první tečku za pomlčku
 echo $replaced
-https://guide-bash.academy/variables.html
 
-${parameter//pattern/replacement} - Nahradí všechny výskyty vzoru za náhradu.
-url='https://guide.bash.academy/variables.html'
+read -p "parameter//pattern/replacement promenna//./-  Nahradí všechny tečky za pomlčky" a
+#${parameter//pattern/replacement} - Nahradí všechny výskyty vzoru za náhradu.
 replaced=${url//./-}  # Nahradí všechny tečky za pomlčky
 echo $replaced
-https://guide-bash-academy/variables-html
 
-bash
-Copy code
+read -p "Budeme provnávat dva texty 'Ahoj' a 'Ahoj světe'" a
+
 text1="Ahoj"
 text2="Ahoj světe"
 
@@ -46,10 +43,11 @@ if [[ $text1 == $text2 ]]; then
 else
     echo "Texty nejsou stejné."
 fi
-Zjištění, zda proměnná obsahuje určitý řetězec:
 
-bash
-Copy code
+read -p "Budeme zjišťovat jestli 'Ahoj světe' obsahuje 'Ahoj'" a
+
+#Zjištění, zda proměnná obsahuje určitý řetězec:
+
 text="Ahoj světe"
 
 if [[ $text == *"Ahoj"* ]]; then
@@ -57,10 +55,10 @@ if [[ $text == *"Ahoj"* ]]; then
 else
     echo "Proměnná neobsahuje řetězec 'Ahoj'."
 fi
-Porovnání prvních čtyř znaků textu s určitým řetězcem:
 
-bash
-Copy code
+read -p "Budeme zjišťovat jestli 'Ahoj světe' jeho první 4 znaky jsou 'Ahoj'" a
+
+#Porovnání prvních čtyř znaků textu s určitým řetězcem:
 text="Ahoj světe"
 
 if [[ "${text:0:4}" == "Ahoj" ]]; then
