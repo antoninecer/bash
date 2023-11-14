@@ -1,397 +1,182 @@
-Chat GPT mi pomohl vsadit cisla do eurojakpotu
-
-https://github.com/antoninecer/bash/blob/main/eurojackpotbychatgpt
-
+Jak mi ChatGPT pomohl udelat aplikaci na Stastnych 10
+--------------------------------------------------------
 https://www.youtube.com/@CzechITHub
 
-ahoj , potrebuju udelat nejake statistiky, jde o cisla tazena v jedne hre eurojacpot, znas tu hru ?
 
+Ahoj, potrebuji zase pomoci , znas prosimte loterii stastnych 10 ?
 ChatGPT
-Ahoj! Ano, znám hru Eurojackpot. Eurojackpot je evropská loterijní hra, ve které hráči tipují čísla a snaží se uhodnout správnou kombinaci čísel, která je vylosována v každém losování. Pokud máš otázky ohledně statistik týkajících se čísel v této hře, rád ti pomůžu. Jaké statistiky bys chtěl/a vytvořit nebo jaký máš konkrétní dotaz ohledně Eurojackpotu?
+Ahoj! Bohužel nemám aktuální informace o konkrétních loteriích nebo výsledcích, protože moje znalosti byly aktualizovány naposledy v lednu 2022 a nejsem schopen prohledávat aktuální internetové informace. Loterie se také často mění a liší se podle země a regionu, takže bych ti doporučil zkontrolovat nejnovější informace o loterii Stastných 10 na oficiálních webových stránkách nebo se obrátit na místní loterijní úřady, aby ti poskytli aktuální informace o výsledcích a pravidlech této loterie. Hodně štěstí!
 
 User
-ano, mám ubuntu server, predstavuji si nainstalovat na nej mysql, mam csv tabulku, vlozin ti sem prvni radek s nazvy sloupcu
-datum	rok	tyden	c1	c2	c3	c4	c5	d1	d2
-10.11.2023	2023	45	29	17	1	22	31	5	6
+ja ti o ni neco malo reknu, toto je tvuj klon na google a povedel mi o stastnych 10 toto:
+"Stastnych 10" je česká hra, která kombinuje prvky losování a strategie. Hra je založena na výběru čísel a snažíte se dosáhnout co nejlepšího výsledku s těmito čísly. Níže je popis hry "Stastnych 10":
 
+Pravidla hry: Hra "Stastnych 10" je loterijní hra, kde máte možnost vybrat si deset čísel z rozsahu čísel 1 až 80. Vaším cílem je získat co nejlepší kombinaci čísel, která vám přinese výhru.
+
+Losování: Po vybrání svých deseti čísel budou losována čísla ze stejného rozsahu (1-80). Máte šanci vyhrát různé výhry podle toho, kolik z vašich čísel se shoduje s čísly vylosovanými během losování.
+
+Výhry: Hra "Stastnych 10" nabízí různé výherní kategorie a výplaty závisí na tom, kolik čísel jste uhodli. Čím více čísel se shoduje, tím vyšší je váš výherní zisk.
+
+Strategie: Hráči mohou vybírat čísla náhodně nebo zvolit strategii, kde se snaží vybrat čísla na základě statistiky a pravděpodobnosti, která jim může pomoci zvýšit své šance na výhru.
+
+Denní losování: Losování v hře "Stastnych 10" probíhá pravidelně, obvykle denně, což znamená, že máte možnost se zúčastnit hry až jedenkrát denně.
+
+Popularita: Tato hra je oblíbená v České republice a stala se jednou z nejběžnějších loterií, které nabízí šanci na výhru různých finančních cen.
+
+Hra "Stastnych 10" je zábavným způsobem, jak zkoušet své štěstí a dovednosti v předvídání losovaných čísel. Je důležité si uvědomit, že se jedná o formu hazardní hry, a hráči by měli hrát zodpovědně a s rozumem.
 ChatGPT
-Dobře, pokud máš Ubuntu server a chceš na něm nainstalovat MySQL a importovat data z CSV souboru do databáze,
-můžeš postupovat následovně:
+Děkuji za podrobné informace o hře "Stastnych 10"! Zní to jako zajímavá loterijní hra, která kombinuje štěstí s pravděpodobnostní strategií při výběru čísel. Pokud se rozhodnete hrát tuto hru, doporučuji vám hrát zodpovědně a pečlivě zvažovat své číselné kombinace. Hodně štěstí při losování a doufám, že dosáhnete úspěchu! Pokud budete mít další otázky nebo potřebujete další informace, neváhejte se zeptat.
 
-Instalace MySQL:
-Nejprve nainstaluj MySQL server na svém Ubuntu serveru. Můžeš to udělat pomocí následujícího příkazu:
 
-sudo apt-get update
-sudo apt-get install mysql-server
+User
+mam stazeno posledni 2 roky potrebuji vytvorit v mysql databazi a naimportovat tam csv posilam par radku at mas predstavu
+datum	rok	tyden	den	1. cislo	2. cislo	3. cislo	4. cislo	5. cislo	6. cislo	7. cislo	8. cislo	9. cislo	10. cislo	11. cislo	12. cislo	13. cislo	14. cislo	15. cislo	16. cislo	17. cislo	18. cislo	19. cislo	20. cislo	cislo kralovske
+14.11.2023	2023	46	2	19	49	59	65	16	75	51	10	57	17	14	67	41	74	7	77	55	73	56	69	19
+14.11.2023	2023	46	2	48	8	40	11	45	42	76	78	55	37	39	23	32	2	22	28	3	15	75	29	48
+13.11.2023	2023	46	1	58	7	2	77	24	20	30	17	29	60	50	21	8	11	14	74	23	34	51	31	58
+ChatGPT
+Pro vytvoření MySQL databáze a importování dat z CSV souboru budete potřebovat následující kroky:
 
-Během instalace ti bude pravděpodobně zobrazeno okno, kde budeš moci nastavit heslo pro uživatele "root" v MySQL.
- Zvol si silné heslo a zapamatuj si ho, protože ho budeš potřebovat později.
+Vytvoření databáze: Přihlaste se do svého MySQL serveru pomocí příkazu jako mysql -u vaše_jméno -p. Poté vytvořte novou databázi příkazem:
 
-Vytvoření databáze a tabulky:
-Po instalaci MySQL můžeš vytvořit databázi a tabulku, do které budeš importovat data. Můžeš to udělat pomocí příkazů následujícím způsobem:
+CREATE DATABASE stastnych_10;
 
-Přihlaš se do MySQL:
-mysql -u root -p
-Zadej heslo, které jsi nastavil/a během instalace.
+Použití databáze: Použijte nově vytvořenou databázi:
 
-Vytvoř databázi:
+USE stastnych_10;
 
-CREATE DATABASE eurojackpot;
-Použij vytvořenou databázi:
+Vytvoření tabulky: Vytvořte tabulku pro ukládání dat z CSV souboru. Vzhledem k velkému množství sloupců by mohla vypadat například takto:
 
-USE eurojackpot;
-Vytvoř tabulku s odpovídajícími sloupci. Pro tvoji CSV tabulku by to mohlo vypadat nějak takto:
-
-DROP TABLE IF EXISTS eurojackpot;
-
-CREATE TABLE eurojackpot (
-    datum VARCHAR(50),
+CREATE TABLE stastnych_10_data (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    datum DATE,
     rok INT,
     tyden INT,
-    c1 INT,
-    c2 INT,
-    c3 INT,
-    c4 INT,
-    c5 INT,
-    d1 INT,
-    d2 INT
+    den INT,
+    cislo1 INT,
+    cislo2 INT,
+    cislo3 INT,
+    cislo4 INT,
+    cislo5 INT,
+    cislo6 INT,
+    cislo7 INT,
+    cislo8 INT,
+    cislo9 INT,
+    cislo10 INT,
+    cislo11 INT,
+    cislo12 INT,
+    cislo13 INT,
+    cislo14 INT,
+    cislo15 INT,
+    cislo16 INT,
+    cislo17 INT,
+    cislo18 INT,
+    cislo19 INT,
+    cislo20 INT,
+    cislo_kralovske INT
 );
+Toto je pouze základní schéma tabulky, můžete ho přizpůsobit svým potřebám, například přidat další sloupce pro unikátní identifikaci záznamů nebo další informace.
+
+Importování dat: Nyní můžete importovat data z CSV souboru do vaší databáze. Použijte příkaz LOAD DATA INFILE:
+
+LOAD DATA INFILE '/tmp/mysql/stastnych-10.csv'
+INTO TABLE stastnych_10_data
+FIELDS TERMINATED BY ';'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS
+(datum, rok, tyden, den, cislo1, cislo2, cislo3, cislo4, cislo5, cislo6, cislo7, cislo8, cislo9, cislo10, cislo11, cislo12, cislo13, cislo14, cislo15, cislo16, cislo17, cislo18, cislo19, cislo20, cislo_kralovske);
+
+CREATE USER 's10'@'localhost' IDENTIFIED BY 'Heslo12345';
+GRANT ALL PRIVILEGES ON stastnych_10.* TO 's10'@'localhost';
+FLUSH PRIVILEGES;
 
 
 
-Importování dat z CSV souboru:
-Můžeš použít příkaz LOAD DATA INFILE k importování dat z CSV souboru. Nejprve zkopíruj CSV soubor na svůj server a pak můžeš provést import:
+novy terminal
+ssh 192.168.0.157
+sudo su
+apt install apache2
+systemctl status apache2
+ufw allow 'Apache'
+apt install php8.1 libapache2-mod-php8.1
+php -v
+apt install  php8.1-mysql php8.1-xml php8.1-xmlrpc php8.1-curl php8.1-gd php8.1-imagick php8.1-cli php8.1-imap php8.1-mbstring php8.1-opcache php8.1-soap php8.1-zip php8.1-intl -y
+echo "<?php phpinfo(); ?>" | sudo tee /var/www/html/info.php
+
+Strasne sem se hadal s AI je to strasny
+nakonec jsem udelal kompromis, vem top 13 tazenych cisel a rozdel je za sebe do 4 sloupu, aby se prostridaly
 
 
-mysql> LOAD DATA INFILE '/tmp/eurojackpot.csv'
-    -> INTO TABLE eurojackpot
-    -> FIELDS TERMINATED BY ','
-    -> LINES TERMINATED BY '\n'
-    -> IGNORE 1 ROWS;
-ERROR 1290 (HY000): The MySQL server is running with the --secure-file-priv option so it cannot execute this statement
-mysql>
-
-mysql> SHOW VARIABLES LIKE "secure_file_priv";
-+------------------+-----------------------+
-| Variable_name    | Value                 |
-+------------------+-----------------------+
-| secure_file_priv | /var/lib/mysql-files/ |
-+------------------+-----------------------+
-1 row in set (0.01 sec)
-mysql> exit
-Bye
-cd /tmp/
-root@test:/tmp# ln -s /var/lib/mysql-files/ mysql
-root@test:/tmp# cp eurojackpot.csv mysql
-root@test:/tmp# ll mysql/
-total 32
-drwx------  2 mysql mysql  4096 Nov 14 08:05 ./
-drwxr-xr-x 54 root  root   4096 Nov 14 07:44 ../
--rwxr-xr-x  1 root  root  21441 Nov 14 08:05 eurojackpot.csv*  
- 
-mysql> 
-LOAD DATA INFILE '/tmp/mysql/eurojackpot.csv' INTO TABLE eurojackpot FIELDS TERMINATED BY ';' LINES TERMINATED BY '\n' IGNORE 1 ROWS;
-Query OK, 560 rows affected (0.48 sec)
-Records: 560  Deleted: 0  Skipped: 0  Warnings: 0
-
-nejcasteji tazena cisla ve slouci :
-SELECT c1 AS cislo, COUNT(*) AS pocet
-FROM eurojackpot
-GROUP BY c1
-ORDER BY pocet DESC
-LIMIT 5;
-
-+-------+-------+
-| cislo | pocet |
-+-------+-------+
-|    40 |    18 |
-|    39 |    18 |
-|    15 |    17 |
-|     5 |    16 |
-|    16 |    16 |
-+-------+-------+
-5 rows in set (0.00 sec)
-
-SELECT c2 AS cislo, COUNT(*) AS pocet
-FROM eurojackpot
-GROUP BY c2
-ORDER BY pocet DESC
-LIMIT 5;
-
-+-------+-------+
-| cislo | pocet |
-+-------+-------+
-|     2 |    17 |
-|    17 |    16 |
-|    27 |    16 |
-|    20 |    15 |
-|     7 |    15 |
-+-------+-------+
-5 rows in set (0.00 sec)
-
-SELECT c3 AS cislo, COUNT(*) AS pocet
-FROM eurojackpot
-GROUP BY c3
-ORDER BY pocet DESC
-LIMIT 5;
-
-+-------+-------+
-| cislo | pocet |
-+-------+-------+
-|    49 |    17 |
-|    20 |    16 |
-|    42 |    15 |
-|    30 |    15 |
-|    35 |    14 |
-+-------+-------+
-5 rows in set (0.00 sec)
-
-SELECT c4 AS cislo, COUNT(*) AS pocet
-FROM eurojackpot
-GROUP BY c4
-ORDER BY pocet DESC
-LIMIT 5;
-
-+-------+-------+
-| cislo | pocet |
-+-------+-------+
-|    34 |    18 |
-|    43 |    17 |
-|    46 |    16 |
-|    45 |    15 |
-|    44 |    15 |
-+-------+-------+
-5 rows in set (0.00 sec)
-
-SELECT c5 AS cislo, COUNT(*) AS pocet
-FROM eurojackpot
-GROUP BY c5
-ORDER BY pocet DESC
-LIMIT 5;
-+-------+-------+
-| cislo | pocet |
-+-------+-------+
-|    34 |    18 |
-|    43 |    17 |
-|    46 |    16 |
-|    45 |    15 |
-|    44 |    15 |
-+-------+-------+
-5 rows in set (0.00 sec)
-
-SELECT d1 AS cislo, COUNT(*) AS pocet
-FROM eurojackpot
-GROUP BY d1
-ORDER BY pocet DESC
-LIMIT 5;
-
-+-------+-------+
-| cislo | pocet |
-+-------+-------+
-|     3 |    62 |
-|     5 |    61 |
-|     9 |    60 |
-|     7 |    58 |
-|     8 |    53 |
-+-------+-------+
-5 rows in set (0.00 sec)
 
 
-SELECT d2 AS cislo, COUNT(*) AS pocet
-FROM eurojackpot
-GROUP BY d2
-ORDER BY pocet DESC
-LIMIT 5;
+cd /var/www/html/
+vim index.php
 
-+-------+-------+
-| cislo | pocet |
-+-------+-------+
-|     8 |    61 |
-|     9 |    58 |
-|     5 |    57 |
-|     3 |    55 |
-|     1 |    53 |
-+-------+-------+
-5 rows in set (0.00 sec)
+<?php
+$servername = "localhost";
+$username = "s10";
+$password = "Heslo12345";
+$dbname = "stastnych_10";
 
+$conn = new mysqli($servername, $username, $password, $dbname);
 
-You
-prosimte a udelas mi z c1-c5 nejcastejsi cisla 
-ChatGPT
-ChatGPT
-Samozřejmě, můžeme provést analýzu pro všechny sloupce c1 až c5 najednou. Zde je dotaz, který ti poskytne nejčastěji se vyskytující čísla v těchto pěti sloupcích:
-SELECT cislo, SUM(pocet) AS celkem_pocet
-FROM (
-    SELECT c1 AS cislo, COUNT(*) AS pocet FROM eurojackpot GROUP BY c1
-    UNION ALL
-    SELECT c2 AS cislo, COUNT(*) AS pocet FROM eurojackpot GROUP BY c2
-    UNION ALL
-    SELECT c3 AS cislo, COUNT(*) AS pocet FROM eurojackpot GROUP BY c3
-    UNION ALL
-    SELECT c4 AS cislo, COUNT(*) AS pocet FROM eurojackpot GROUP BY c4
-    UNION ALL
-    SELECT c5 AS cislo, COUNT(*) AS pocet FROM eurojackpot GROUP BY c5
-) AS tmp
-GROUP BY cislo
-ORDER BY celkem_pocet DESC
-LIMIT 10;
+if ($conn->connect_error) {
+    die("Připojení k databázi selhalo: " . $conn->connect_error);
+}
 
-+-------+--------------+
-| cislo | celkem_pocet |
-+-------+--------------+
-|    20 |           70 |
-|    49 |           68 |
-|    46 |           66 |
-|    16 |           66 |
-|    35 |           65 |
-|    34 |           64 |
-|    39 |           63 |
-|    11 |           62 |
-|    41 |           60 |
-|    24 |           60 |
-+-------+--------------+
-10 rows in set (0.00 sec)
+$sql = "SELECT cislo1, cislo2, cislo3, cislo4, cislo5, cislo6, cislo7, cislo8, cislo9, cislo10, cislo11, cislo12, cislo13, cislo14, cislo15, cislo16, cislo17, cislo18, cislo19, cislo20 FROM stastnych_10_data";
 
-SELECT cislo, SUM(pocet) AS celkem_pocet
-FROM (
-    SELECT d1 AS cislo, COUNT(*) AS pocet FROM eurojackpot GROUP BY d1
-    UNION ALL
-    SELECT d2 AS cislo, COUNT(*) AS pocet FROM eurojackpot GROUP BY d2
-) AS tmp
-GROUP BY cislo
-ORDER BY celkem_pocet DESC;
+$result = $conn->query($sql);
 
-+-------+--------------+
-| cislo | celkem_pocet |
-+-------+--------------+
-|     5 |          118 |
-|     9 |          118 |
-|     3 |          117 |
-|     8 |          114 |
-|     7 |          107 |
-|     4 |          105 |
-|     6 |          104 |
-|    10 |           97 |
-|     1 |           94 |
-|     2 |           93 |
-|    12 |           27 |
-|    11 |           26 |
-+-------+--------------+
-12 rows in set (0.00 sec)
+if ($result->num_rows > 0) {
+    $numberCounts = array();
 
-no a teď dáme 5 sloupečků
+    while ($row = $result->fetch_assoc()) {
+        $numbers = array_values($row);
 
-40,2,49,34,43	3,8
-39,17,20,43,34	5,9
-15,27,42,46,45	9,5
-5,20,30,45,44	7,3
-16,7,35,44,46	8,1
+        foreach ($numbers as $number) {
+            if (!isset($numberCounts[$number])) {
+                $numberCounts[$number] = 0;
+            }
+            $numberCounts[$number]++;
+        }
+    }
+
+    // Seřazení čísel podle četnosti sestupně
+    arsort($numberCounts);
+
+    // Výběr nejvíce tahána čísla (např. 13)
+    $selectedNumbers = array_slice(array_keys($numberCounts), 0, 13);
+
+    // Rozdělení čísel do 4 sloupců s opakováním čísel
+    $columns = array();
+    for ($i = 0; $i < 4; $i++) {
+        $column = array();
+        for ($j = 0; $j < 10; $j++) {
+            $index = ($i * 10 + $j) % count($selectedNumbers);
+            $number = $selectedNumbers[$index];
+            $column[] = $number;
+        }
+        $columns[] = $column;
+    }
+
+    // Vypsání čísel ve sloupcích
+    for ($i = 0; $i < count($columns); $i++) {
+        echo "Sloupec " . ($i + 1) . ": " . implode(", ", $columns[$i]) . "<br>";
+    }
+
+} else {
+    echo "Žádná data k dispozici.";
+}
+
+$conn->close();
+?>
 
 
-u pateho sloupecku jsem musel hrat trosku sudoku a prohazet aby se cisla neopakovali
 
-no a nakonec vemu ty nejmene tazene pro kazdy sloupecek
-mysql> SELECT c1 AS cislo, COUNT(*) AS pocet
-    -> FROM eurojackpot
-    -> GROUP BY c1
-    -> ORDER BY pocet ASC
-    -> LIMIT 6;
-+-------+-------+
-| cislo | pocet |
-+-------+-------+
-|    48 |     5 |
-|    32 |     6 |
-|    20 |     6 |
-|    33 |     7 |
-|    45 |     7 |
-|    10 |     8 |
-+-------+-------+
-6 rows in set (0.01 sec)
+Sloupec 1: 24, 33, 49, 77, 15, 67, 38, 74, 13, 34
+Sloupec 2: 10, 28, 50, 24, 33, 49, 77, 15, 67, 38
+Sloupec 3: 74, 13, 34, 10, 28, 50, 24, 33, 49, 77
+Sloupec 4: 15, 67, 38, 74, 13, 34, 10, 28, 50, 24
 
-mysql> SELECT c2 AS cislo, COUNT(*) AS pocet FROM eurojackpot GROUP BY cislo ORDER BY pocet ASC LIMIT 6;
-+-------+-------+
-| cislo | pocet |
-+-------+-------+
-|    42 |     3 |
-|    15 |     6 |
-|    28 |     6 |
-|    43 |     7 |
-|    50 |     7 |
-|     4 |     7 |
-+-------+-------+
-6 rows in set (0.00 sec)
-
-mysql> SELECT c3 AS cislo, COUNT(*) AS pocet FROM eurojackpot GROUP BY cislo ORDER BY pocet ASC LIMIT 6;
-+-------+-------+
-| cislo | pocet |
-+-------+-------+
-|    23 |     5 |
-|    13 |     5 |
-|    10 |     6 |
-|    47 |     7 |
-|    44 |     8 |
-|     2 |     8 |
-+-------+-------+
-6 rows in set (0.00 sec)
-
-mysql> SELECT c4 AS cislo, COUNT(*) AS pocet FROM eurojackpot GROUP BY cislo ORDER BY pocet ASC LIMIT 6;
-+-------+-------+
-| cislo | pocet |
-+-------+-------+
-|    27 |     3 |
-|    28 |     5 |
-|    36 |     6 |
-|     5 |     6 |
-|    26 |     8 |
-|    48 |     8 |
-+-------+-------+
-6 rows in set (0.00 sec)
-
-mysql> SELECT c5 AS cislo, COUNT(*) AS pocet FROM eurojackpot GROUP BY cislo ORDER BY pocet ASC LIMIT 6;
-+-------+-------+
-| cislo | pocet |
-+-------+-------+
-|    40 |     3 |
-|    48 |     6 |
-|    10 |     6 |
-|    30 |     7 |
-|     2 |     7 |
-|    45 |     8 |
-+-------+-------+
-6 rows in set (0.00 sec)
-
-mysql> SELECT d1 AS cislo, COUNT(*) AS pocet FROM eurojackpot GROUP BY cislo ORDER BY pocet ASC LIMIT 6;
-+-------+-------+
-| cislo | pocet |
-+-------+-------+
-|    11 |    12 |
-|    12 |    15 |
-|     1 |    41 |
-|     2 |    42 |
-|    10 |    51 |
-|     4 |    52 |
-+-------+-------+
-6 rows in set (0.00 sec)
-
-mysql> SELECT d2 AS cislo, COUNT(*) AS pocet FROM eurojackpot GROUP BY cislo ORDER BY pocet ASC LIMIT 6;
-+-------+-------+
-| cislo | pocet |
-+-------+-------+
-|    12 |    12 |
-|    11 |    14 |
-|    10 |    46 |
-|     7 |    49 |
-|     6 |    51 |
-|     2 |    51 |
-+-------+-------+
-6 rows in set (0.00 sec)
-
-48,42,23,27,40	11,12
-
-dohromady 
-40,2,49,34,43,3,8
-39,17,20,43,34	5,9
-15,27,42,46,45	9,5
-5,20,30,45,44	7,3
-16,7,35,44,46	8,1
-48,42,23,27,40	11,12
+tydle cisla jsem vsadil na dopoledni i odpoledni sazeni na 3 dny za 270 korun
