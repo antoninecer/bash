@@ -1,0 +1,397 @@
+Chat GPT mi pomohl vsadit cisla do eurojakpotu
+
+https://www.youtube.com/@CzechITHub
+https://github.com/antoninecer/bash
+
+ahoj , potrebuju udelat nejake statistiky, jde o cisla tazena v jedne hre eurojacpot, znas tu hru ?
+
+ChatGPT
+Ahoj! Ano, znám hru Eurojackpot. Eurojackpot je evropská loterijní hra, ve které hráči tipují čísla a snaží se uhodnout správnou kombinaci čísel, která je vylosována v každém losování. Pokud máš otázky ohledně statistik týkajících se čísel v této hře, rád ti pomůžu. Jaké statistiky bys chtěl/a vytvořit nebo jaký máš konkrétní dotaz ohledně Eurojackpotu?
+
+User
+ano, mám ubuntu server, predstavuji si nainstalovat na nej mysql, mam csv tabulku, vlozin ti sem prvni radek s nazvy sloupcu
+datum	rok	tyden	c1	c2	c3	c4	c5	d1	d2
+10.11.2023	2023	45	29	17	1	22	31	5	6
+
+ChatGPT
+Dobře, pokud máš Ubuntu server a chceš na něm nainstalovat MySQL a importovat data z CSV souboru do databáze,
+můžeš postupovat následovně:
+
+Instalace MySQL:
+Nejprve nainstaluj MySQL server na svém Ubuntu serveru. Můžeš to udělat pomocí následujícího příkazu:
+
+sudo apt-get update
+sudo apt-get install mysql-server
+
+Během instalace ti bude pravděpodobně zobrazeno okno, kde budeš moci nastavit heslo pro uživatele "root" v MySQL.
+ Zvol si silné heslo a zapamatuj si ho, protože ho budeš potřebovat později.
+
+Vytvoření databáze a tabulky:
+Po instalaci MySQL můžeš vytvořit databázi a tabulku, do které budeš importovat data. Můžeš to udělat pomocí příkazů následujícím způsobem:
+
+Přihlaš se do MySQL:
+mysql -u root -p
+Zadej heslo, které jsi nastavil/a během instalace.
+
+Vytvoř databázi:
+
+CREATE DATABASE eurojackpot;
+Použij vytvořenou databázi:
+
+USE eurojackpot;
+Vytvoř tabulku s odpovídajícími sloupci. Pro tvoji CSV tabulku by to mohlo vypadat nějak takto:
+
+DROP TABLE IF EXISTS eurojackpot;
+
+CREATE TABLE eurojackpot (
+    datum VARCHAR(50),
+    rok INT,
+    tyden INT,
+    c1 INT,
+    c2 INT,
+    c3 INT,
+    c4 INT,
+    c5 INT,
+    d1 INT,
+    d2 INT
+);
+
+
+
+Importování dat z CSV souboru:
+Můžeš použít příkaz LOAD DATA INFILE k importování dat z CSV souboru. Nejprve zkopíruj CSV soubor na svůj server a pak můžeš provést import:
+
+
+mysql> LOAD DATA INFILE '/tmp/eurojackpot.csv'
+    -> INTO TABLE eurojackpot
+    -> FIELDS TERMINATED BY ','
+    -> LINES TERMINATED BY '\n'
+    -> IGNORE 1 ROWS;
+ERROR 1290 (HY000): The MySQL server is running with the --secure-file-priv option so it cannot execute this statement
+mysql>
+
+mysql> SHOW VARIABLES LIKE "secure_file_priv";
++------------------+-----------------------+
+| Variable_name    | Value                 |
++------------------+-----------------------+
+| secure_file_priv | /var/lib/mysql-files/ |
++------------------+-----------------------+
+1 row in set (0.01 sec)
+mysql> exit
+Bye
+cd /tmp/
+root@test:/tmp# ln -s /var/lib/mysql-files/ mysql
+root@test:/tmp# cp eurojackpot.csv mysql
+root@test:/tmp# ll mysql/
+total 32
+drwx------  2 mysql mysql  4096 Nov 14 08:05 ./
+drwxr-xr-x 54 root  root   4096 Nov 14 07:44 ../
+-rwxr-xr-x  1 root  root  21441 Nov 14 08:05 eurojackpot.csv*  
+ 
+mysql> 
+LOAD DATA INFILE '/tmp/mysql/eurojackpot.csv' INTO TABLE eurojackpot FIELDS TERMINATED BY ';' LINES TERMINATED BY '\n' IGNORE 1 ROWS;
+Query OK, 560 rows affected (0.48 sec)
+Records: 560  Deleted: 0  Skipped: 0  Warnings: 0
+
+nejcasteji tazena cisla ve slouci :
+SELECT c1 AS cislo, COUNT(*) AS pocet
+FROM eurojackpot
+GROUP BY c1
+ORDER BY pocet DESC
+LIMIT 5;
+
++-------+-------+
+| cislo | pocet |
++-------+-------+
+|    40 |    18 |
+|    39 |    18 |
+|    15 |    17 |
+|     5 |    16 |
+|    16 |    16 |
++-------+-------+
+5 rows in set (0.00 sec)
+
+SELECT c2 AS cislo, COUNT(*) AS pocet
+FROM eurojackpot
+GROUP BY c2
+ORDER BY pocet DESC
+LIMIT 5;
+
++-------+-------+
+| cislo | pocet |
++-------+-------+
+|     2 |    17 |
+|    17 |    16 |
+|    27 |    16 |
+|    20 |    15 |
+|     7 |    15 |
++-------+-------+
+5 rows in set (0.00 sec)
+
+SELECT c3 AS cislo, COUNT(*) AS pocet
+FROM eurojackpot
+GROUP BY c3
+ORDER BY pocet DESC
+LIMIT 5;
+
++-------+-------+
+| cislo | pocet |
++-------+-------+
+|    49 |    17 |
+|    20 |    16 |
+|    42 |    15 |
+|    30 |    15 |
+|    35 |    14 |
++-------+-------+
+5 rows in set (0.00 sec)
+
+SELECT c4 AS cislo, COUNT(*) AS pocet
+FROM eurojackpot
+GROUP BY c4
+ORDER BY pocet DESC
+LIMIT 5;
+
++-------+-------+
+| cislo | pocet |
++-------+-------+
+|    34 |    18 |
+|    43 |    17 |
+|    46 |    16 |
+|    45 |    15 |
+|    44 |    15 |
++-------+-------+
+5 rows in set (0.00 sec)
+
+SELECT c5 AS cislo, COUNT(*) AS pocet
+FROM eurojackpot
+GROUP BY c5
+ORDER BY pocet DESC
+LIMIT 5;
++-------+-------+
+| cislo | pocet |
++-------+-------+
+|    34 |    18 |
+|    43 |    17 |
+|    46 |    16 |
+|    45 |    15 |
+|    44 |    15 |
++-------+-------+
+5 rows in set (0.00 sec)
+
+SELECT d1 AS cislo, COUNT(*) AS pocet
+FROM eurojackpot
+GROUP BY d1
+ORDER BY pocet DESC
+LIMIT 5;
+
++-------+-------+
+| cislo | pocet |
++-------+-------+
+|     3 |    62 |
+|     5 |    61 |
+|     9 |    60 |
+|     7 |    58 |
+|     8 |    53 |
++-------+-------+
+5 rows in set (0.00 sec)
+
+
+SELECT d2 AS cislo, COUNT(*) AS pocet
+FROM eurojackpot
+GROUP BY d2
+ORDER BY pocet DESC
+LIMIT 5;
+
++-------+-------+
+| cislo | pocet |
++-------+-------+
+|     8 |    61 |
+|     9 |    58 |
+|     5 |    57 |
+|     3 |    55 |
+|     1 |    53 |
++-------+-------+
+5 rows in set (0.00 sec)
+
+
+You
+prosimte a udelas mi z c1-c5 nejcastejsi cisla 
+ChatGPT
+ChatGPT
+Samozřejmě, můžeme provést analýzu pro všechny sloupce c1 až c5 najednou. Zde je dotaz, který ti poskytne nejčastěji se vyskytující čísla v těchto pěti sloupcích:
+SELECT cislo, SUM(pocet) AS celkem_pocet
+FROM (
+    SELECT c1 AS cislo, COUNT(*) AS pocet FROM eurojackpot GROUP BY c1
+    UNION ALL
+    SELECT c2 AS cislo, COUNT(*) AS pocet FROM eurojackpot GROUP BY c2
+    UNION ALL
+    SELECT c3 AS cislo, COUNT(*) AS pocet FROM eurojackpot GROUP BY c3
+    UNION ALL
+    SELECT c4 AS cislo, COUNT(*) AS pocet FROM eurojackpot GROUP BY c4
+    UNION ALL
+    SELECT c5 AS cislo, COUNT(*) AS pocet FROM eurojackpot GROUP BY c5
+) AS tmp
+GROUP BY cislo
+ORDER BY celkem_pocet DESC
+LIMIT 10;
+
++-------+--------------+
+| cislo | celkem_pocet |
++-------+--------------+
+|    20 |           70 |
+|    49 |           68 |
+|    46 |           66 |
+|    16 |           66 |
+|    35 |           65 |
+|    34 |           64 |
+|    39 |           63 |
+|    11 |           62 |
+|    41 |           60 |
+|    24 |           60 |
++-------+--------------+
+10 rows in set (0.00 sec)
+
+SELECT cislo, SUM(pocet) AS celkem_pocet
+FROM (
+    SELECT d1 AS cislo, COUNT(*) AS pocet FROM eurojackpot GROUP BY d1
+    UNION ALL
+    SELECT d2 AS cislo, COUNT(*) AS pocet FROM eurojackpot GROUP BY d2
+) AS tmp
+GROUP BY cislo
+ORDER BY celkem_pocet DESC;
+
++-------+--------------+
+| cislo | celkem_pocet |
++-------+--------------+
+|     5 |          118 |
+|     9 |          118 |
+|     3 |          117 |
+|     8 |          114 |
+|     7 |          107 |
+|     4 |          105 |
+|     6 |          104 |
+|    10 |           97 |
+|     1 |           94 |
+|     2 |           93 |
+|    12 |           27 |
+|    11 |           26 |
++-------+--------------+
+12 rows in set (0.00 sec)
+
+no a teď dáme 5 sloupečků
+
+40,2,49,34,43	3,8
+39,17,20,43,34	5,9
+15,27,42,46,45	9,5
+5,20,30,45,44	7,3
+16,7,35,44,46	8,1
+
+
+u pateho sloupecku jsem musel hrat trosku sudoku a prohazet aby se cisla neopakovali
+
+no a nakonec vemu ty nejmene tazene pro kazdy sloupecek
+mysql> SELECT c1 AS cislo, COUNT(*) AS pocet
+    -> FROM eurojackpot
+    -> GROUP BY c1
+    -> ORDER BY pocet ASC
+    -> LIMIT 6;
++-------+-------+
+| cislo | pocet |
++-------+-------+
+|    48 |     5 |
+|    32 |     6 |
+|    20 |     6 |
+|    33 |     7 |
+|    45 |     7 |
+|    10 |     8 |
++-------+-------+
+6 rows in set (0.01 sec)
+
+mysql> SELECT c2 AS cislo, COUNT(*) AS pocet FROM eurojackpot GROUP BY cislo ORDER BY pocet ASC LIMIT 6;
++-------+-------+
+| cislo | pocet |
++-------+-------+
+|    42 |     3 |
+|    15 |     6 |
+|    28 |     6 |
+|    43 |     7 |
+|    50 |     7 |
+|     4 |     7 |
++-------+-------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT c3 AS cislo, COUNT(*) AS pocet FROM eurojackpot GROUP BY cislo ORDER BY pocet ASC LIMIT 6;
++-------+-------+
+| cislo | pocet |
++-------+-------+
+|    23 |     5 |
+|    13 |     5 |
+|    10 |     6 |
+|    47 |     7 |
+|    44 |     8 |
+|     2 |     8 |
++-------+-------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT c4 AS cislo, COUNT(*) AS pocet FROM eurojackpot GROUP BY cislo ORDER BY pocet ASC LIMIT 6;
++-------+-------+
+| cislo | pocet |
++-------+-------+
+|    27 |     3 |
+|    28 |     5 |
+|    36 |     6 |
+|     5 |     6 |
+|    26 |     8 |
+|    48 |     8 |
++-------+-------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT c5 AS cislo, COUNT(*) AS pocet FROM eurojackpot GROUP BY cislo ORDER BY pocet ASC LIMIT 6;
++-------+-------+
+| cislo | pocet |
++-------+-------+
+|    40 |     3 |
+|    48 |     6 |
+|    10 |     6 |
+|    30 |     7 |
+|     2 |     7 |
+|    45 |     8 |
++-------+-------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT d1 AS cislo, COUNT(*) AS pocet FROM eurojackpot GROUP BY cislo ORDER BY pocet ASC LIMIT 6;
++-------+-------+
+| cislo | pocet |
++-------+-------+
+|    11 |    12 |
+|    12 |    15 |
+|     1 |    41 |
+|     2 |    42 |
+|    10 |    51 |
+|     4 |    52 |
++-------+-------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT d2 AS cislo, COUNT(*) AS pocet FROM eurojackpot GROUP BY cislo ORDER BY pocet ASC LIMIT 6;
++-------+-------+
+| cislo | pocet |
++-------+-------+
+|    12 |    12 |
+|    11 |    14 |
+|    10 |    46 |
+|     7 |    49 |
+|     6 |    51 |
+|     2 |    51 |
++-------+-------+
+6 rows in set (0.00 sec)
+
+48,42,23,27,40	11,12
+
+dohromady 
+40,2,49,34,43,3,8
+39,17,20,43,34	5,9
+15,27,42,46,45	9,5
+5,20,30,45,44	7,3
+16,7,35,44,46	8,1
+48,42,23,27,40	11,12
+
