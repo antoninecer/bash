@@ -1,0 +1,51 @@
+instalace ntfy
+---------------
+Nezapomeňte dát odběr a laik :)
+
+https://www.youtube.com/@CzechITHub
+
+Nainstalujte si na telefon aplikaci ntfy
+
+jak nastavit zprávu po skončení procesu bash07
+https://youtu.be/psJCJS4SoUo
+
+vy pouzijte vlastni dns, nebo ip, já použil free server na Oracle Free Tier a na IP adresu jednoho serveru sem si dal DNS
+*.oracle1.nanavsi.com, takže pak cokoliv dám před .oracle1.nanavsi.com skončí na tom serveru.
+Upozorňuju, mám tam NginX a používám jej jako reverzní proxy, jestli budete mít zájem, můžu ukázat.
+
+ntfy.oracle1.nanavsi.com
+
+
+Do umístění, kde chcete mít své dockerové ini soubory s případnými dalšími configuráky, já používám /opt/docker
+tak vytvořte adresář ntfy a do něj dejte soubor docker-compose.yml
+
+version: "2.1"
+services:
+  ntfy:
+    image: binwiederhier/ntfy
+    container_name: ntfy
+    command:
+      - serve
+    environment:
+      - TZ=Europe/Prague    # optional: Change to your desired timezone
+        #user: 0:0 # optional: Set custom user/group or uid/gid
+    volumes:
+      - ./var/cache/ntfy:/var/cache/ntfy:rw
+      - ./etc/ntfy:/etc/ntfy:rw
+    ports:
+      - 8007:80
+
+    restart: unless-stopped
+
+
+do podadresáře etc/ntfy/ dejte soubor
+server.yml
+# base-url musí směřovat na opravdovou cestu k vašemu serveru!
+base-url: https://ntfy.oracle1.nanavsi.com
+# todle proboha neměňte, bez toho by iphony nedostávali automaticky notifikace
+upstream-base-url: "https://ntfy.sh"
+
+
+Pak si založte přes webové rozhraní odběrový kanál, a v telefonu si přidáte odběr/subscription, zvolíte použití jiného serveru a vložte url serveru a do topic dejte vámi založený kanál
+
+Užívejte :)
