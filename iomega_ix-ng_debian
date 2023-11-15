@@ -1,0 +1,103 @@
+#!/bin/bash
+
+# Získání základních informací o síti ze současného systému
+IP=$(hostname -I | cut -d ' ' -f 1)
+GATEWAY=$(ip r | grep default | cut -d ' ' -f 3)
+DNS=$(grep nameserver /etc/resolv.conf | cut -d ' ' -f 2)
+NETMASK=$(ifconfig | grep -w "inet" | grep -v "127.0.0.1" | awk '{ print $4 }')
+
+# Uživatelské vstupy
+read -p "Zadej novou IP adresu (poslední oktet bude změněn): " NEW_IP
+read -p "Zadej hostname: " HOSTNAME
+read -p "Zadej uživatelské jméno: " USERNAME
+read -s -p "Zadej heslo: " PASSWORD
+echo ""
+read -p "Zadej časovou zónu (např. Europe/Prague): " TIMEZONE
+
+# Úprava IP adresy
+IP_PREFIX=$(echo $IP | cut -d '.' -f 1-3)
+NEW_IP="$IP_PREFIX.$NEW_IP"
+
+# Seznam disků a výběr disku
+disks=$(lsblk -rno NAME,MOUNTPOINT | grep -v '/boot' | cut -d ' ' -f 1)
+echo "Dostupné disky pro úpravy:"
+echo "$disks"
+read -p "Zadej název disku pro úpravu (např. sda): " disk_choice
+
+# Ověření a potvrzení výběru disku
+if [[ $disks == *"$disk_choice"* ]]; then
+    echo "Vybraný disk: /dev/$disk_choice"
+    lsblk -o NAME,SIZE,MOUNTPOINT,FSTYPE,TYPE "/dev/$disk_choice" --tree | grep -v loop | head -n 10
+    read -p "Opravdu chcete smazat a připravit disk /dev/$disk_choice? (ano/ne): " confirm
+    if [ "$confirm" != "ano" ]; then
+        echo "Úprava disku byla zrušena."
+        exit 1
+    fi
+else
+    echo "Chybný výběr disku. Skript bude ukončen."
+    exit 1
+fi
+
+DISK="/dev/$disk_choice"
+
+# Vymazání a rozdělení disku
+sudo sfdisk --delete $DISK
+echo -e "n\np\n1\n\n+256M\nt\n83\nn\np\n2\n\n+5G\nt\n2\n83\nn\np\n3\n\n\nt\n3\n83\nw" | sudo fdisk $DISK
+
+# Formátování
+sudo mkfs.ext4 ${DISK}1
+sudo mkfs.ext4 ${DISK}2
+sudo mkfs.ext4 ${DISK}3
+
+# Stažení Debianu
+wget -O debian-mini.iso http://ftp.debian.org/debian/dists/stable/main/installer-armel/current/images/netboot/mini.iso
+
+# Vytvoření pracovního adresáře
+WORKDIR=$(mktemp -d)
+cd $WORKDIR
+
+# Rozbalení ISO
+bsdtar -C $WORKDIR -xf debian-mini.iso
+
+# Vytvoření preseed souboru
+cat > preseed.cfg << EOF
+d-i debian-installer/locale string en_US
+d-i keyboard-configuration/xkb-keymap select us
+d-i netcfg/choose_interface select auto
+d-i netcfg/get_hostname string $HOSTNAME
+d-i netcfg/get_domain string unassigned-domain
+d-i netcfg/get_nameservers string $DNS
+d-i netcfg/get_ipaddress string $NEW_IP
+d-i netcfg/get_netmask string $NETMASK
+d-i netcfg/get_gateway string $GATEWAY
+d-i time/zone string $TIMEZONE
+d-i passwd/root-login boolean true
+d-i passwd/make-user boolean true
+d-i passwd/user-fullname string $USERNAME
+d-i passwd/username string $USERNAME
+d-i passwd/user-password password $PASSWORD
+d-i passwd/user-password-again password $PASSWORD
+d-i partman-auto/method string regular
+d-i partman-auto/init_automatically_partition select biggest_free
+d-i partman/confirm_write_new_label boolean true
+d-i partman/choose_partition select finish
+d-i partman/confirm boolean true
+d-i partman/confirm_nooverwrite boolean true
+d-i pkgsel/include string openssh-server
+d-i pkgsel/upgrade select none
+d-i grub-installer/only_debian boolean true
+EOF
+
+# Přidání preseed souboru do ISO
+echo en > $WORKDIR/isolinux/lang
+cp preseed.cfg $WORKDIR
+
+# Sestavení nového ISO
+xorriso -as mkisofs -r -J -V "Debian Install" -o $WORKDIR/debian-preseeded.iso -b isolinux/isolinux.bin -c isolinux/boot.cat -no-emul-boot -boot-load-size 4 -boot-info-table $WORKDIR
+
+# Výsledné ISO je v $WORKDIR/debian-preseeded.iso
+echo "Nové ISO soubor s přednastavenou instalací je připraven: $WORKDIR/debian-preseeded.iso"
+
+# Uklizení
+cd ..
+rm -rf $WORKDIR
