@@ -7,8 +7,10 @@ https://www.youtube.com/@CzechITHub
 Nezapomenout like, odebirat !!! :)
 
 Tento text je zase na githubu 
+https://github.com/antoninecer/bash/blob/main/70linuxcommands.txt
 
-1. ssh uzivatel@server
+
+1. ssh uzivatel@server , kdyz zadate bez uzivatele rikate, ze stejny uzivatel, pod kterym jste ted na svem systemu
 2. ls - list souboru v aktivnim adresari
 ls -l hezke
 ls -la +skryte h - human readable
