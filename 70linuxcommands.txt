@@ -1,7 +1,12 @@
-70 Linuxových příkazů letem světem
------------------------------------
+70 Linuxových příkazů letem světem za 43 minut
+
+Ono jich nakonec bylo 71, protože jsem Vám ukázal klon TMuxu a to terminal byobu
+Ten použijete, když nechcete přijít o rozdělanou práci a můžete si otevřít více terminálů a přepínat se mezi nimi, po výpadku spojeni staci se ssh zase napojit a znovu spustit byobu a on vás napojí tam, kde jste skončili.
+
 https://www.youtube.com/@CzechITHub
 Nezapomenout like, odebirat !!! :)
+
+Tento text je zase na githubu 
 
 1. ssh uzivatel@server
 2. ls - list souboru v aktivnim adresari
