@@ -1,0 +1,92 @@
+70 Linuxových příkazů letem světem
+-----------------------------------
+https://www.youtube.com/@CzechITHub
+Nezapomenout like, odebirat !!! :)
+
+1. ssh uzivatel@server
+2. ls - list souboru v aktivnim adresari
+ls -l hezke
+ls -la +skryte h - human readable
+3. pwd kde jsem (print working directory)
+4. cd zmen adresar (change directory)
+/ root /home/tonda  .. ../jiny adresar, bez niceho = domu
+5. touch vytvori soubor
+ touch spoustu souboru , nebo soubor{1..10}
+6. echo -neco vytiskni
+echo "text" > soubor.txt
+7. nano soubor - editor ctrl+x exit
+8. vim soubor - editor i insert,Esc :wq /q /w
+9. cat - rychle zobrazeni souboru
+10. less - prohlizeni souboru na obe strany
+11. mkdir - vytvoreni adresare
+12. cp - kopiruje soubory
+13. mv - premistuje/prejmenuje soubory
+14. rm - maze soubory
+rm -r maze adresare i kdyz nejsou prazdne
+15. ln -s vytvoreni linku zastupce na soubor soubor pak link
+16. clear smaze obrazovku
+17. whoami
+18. useradd - zalozi uzivatele -opravneni
+19. sudo proved jako super user
+20. adduser zalozi uivatele se vsim vsudy home from /etc/skel
+21. su switch user 
+22. exit - vyskoci z aktualniho shellu
+23. passwd zmenis sve heslo se zadanim stareho a noveho
+24. sudo passwd nejakeyuzivatel a se sudo se nepta na puvodni a nastavuje
+25. apt balickovaci system na debian based systemech, yum na RHEL
+    nejdriv aktualizovat seznam repozitaru - apt update
+	pak instalovat - apt install nazevbalicku treba finger
+	
+26. finger  - ukaze udaje o uzivateli - musi se nainstalovat
+27. man nazev prikazu, jak se pouzije
+28. whatis nazev programu
+29. which nazevprogramu - ukaze kde se nachazi ten kterej spoustis
+30. whereis nazev programu a ukaze vsechny umisteni programu
+31. wget - stahne neco z internetu 
+32. curl - spusti / stahne >soubor/ pushne na web z webu
+33. zip kam.zip co
+34. unzip co.zip
+35. head soubor - ukaze zacatek
+36. tail soubor - ukaze konec
+37. cmp soubor1 soubor2  copmare porovna dva soubory
+38. diff ukaze rozdily v souborech
+39. vindiff le o poznani lepsi
+40. sort - srovna soubor sort -u srovna a vyhodi duplicity
+41. find odkud(nepovinne kdyz od pwd) -name "co*" (.* pro skryte soubory)
+42. chmod - zmena atributu rwx vlastnik,skupina,ostatni
+43. chown - zmena vlastnika
+44. ifconfig (ip-tools) / ip a
+45. grep s pipe z vystupu vyhleda a vypise jen to co hledame treba ip a |grep ens18
+ip a |grep ens18|grep inet
+46. awk vybere co chceme videt , teba jen ip adresu
+ip a |grep ens18|grep inet|awk '{print $2}'
+47. zobrazeni dns serveru cat /etc/resolv.conf / resolvectl status
+48. ping - je tvuj web up ? -c kolik pingu posle
+49. traceroute nanavsi.com (musi se instalovat)
+50. netstat - co je napojene , nahrazuje ho ss, ale ja pouzivam netstat
+51. firewall iptables/ufw/nftables 
+52. uname - info o systemu uname -a vse uname -r kernel
+53. neofetch musi se instalovat, vse o systemu
+54. cal kalendar, musi se nainstalovat sudo apt install ncal
+55. bc zakladni kalkulacka, navod na netu, nebo man bc
+echo "(5+2+7)/2"|bc
+56. free - kolik je v systemu pouzito / volne pameti
+57. df - disk free df -h 
+58. ps - ukaze procesy ps -aux /ps aux ukaze vse
+59. top ukaze jak je na tom system
+60. htop
+61. kill zabij process kill -9 pid zabij to a neptej, necekej
+62. pkill -f nazevprocesu nemusis znat pid
+63. systemctl (enable/disable/start/stop/restart/status) sluzba
+64. history historie vsech prikazu co jsme napsali
+65. reboot se sudo - restartuje
+66. shutdown se sudo vypne, pouzivam shutdown now -h / -r
+
+67. file soubor, zjisti co to je a rekne nam to
+68. uptime - jak je dlouho zapnut a pozor na 3 cisla load average
+69. deluser smaze uzivatele
+70 timeout ok
+
+	
+ 
+
