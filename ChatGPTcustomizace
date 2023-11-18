@@ -1,0 +1,26 @@
+V návaznosti na návštěvu otce a vsázení šťastných 10, jsme do noci kombinovali a ptali se ChatbotaGPT jak na to
+a vypadlo z něj pár rad
+
+Analýza rozložení čísel:
+Proveďte analýzu rozložení těchto čísel. Zjistěte, jaká čísla se objevují nejčastěji a která jsou méně častá.
+Vytvořte histogramy nebo grafy, které vizualizují rozložení čísel.
+
+Analýza frekvence:
+Zjistěte, jak často se jednotlivá čísla objevují v tazeních.
+Určete, zda existují nějaké čísla, která mají tendenci se častěji objevovat.
+Korelace mezi čísly:
+
+Analyzujte korelace mezi jednotlivými čísly. Zjistěte, zda existují čísla, která se často objevují společně.
+Proveďte korelační analýzu, abyste zjistili, zda existují nějaké vzory.
+Analýza vývoje v čase:
+
+Pokud máte atributy "datum" a "rok", můžete provést analýzu vývoje těchto čísel v čase. Zjistěte, zda existují změny v tazbě čísel v různých letech nebo obdobích.
+Prediktivní modely:
+
+Pokud máte za cíl předpovídat tazena čísla v budoucnosti, můžete vytvořit prediktivní modely, jako je regrese nebo klasifikace, které by vám umožnily předpovědět,
+která čísla budou tazena v dalších tazeních.
+
+No a klasický chatbot opakoval stále dokola podobné chyby a trvalo mi dlouho, než jsem jej usadil do kontextu co po něm chci.
+Již jsem jednu customizaci GPT udělal a to docela zdařilou, rozhodně mnohem relevantnějšími dotazy.
+Rozhodl jsem se proto vytvořit právě pro projekt predikce tažených čísel připravit chatbota specializovaného jen na muj projekt, ma data
+Tady je, co z toho vylezlo, po více jak hodině zkoušení a upřesňování jsem vytvořil nového chatbota a tady je video.
