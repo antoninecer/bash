@@ -1,0 +1,123 @@
+https://www.youtube.com/@CzechITHub
+like, odber
+
+VIM
+lze konfigurovat asi na vice mistech, ale ja pouzivam 2 
+bud v /etc/vim/vimrc
+nebo jen pro uzivatele ~/.vimrc
+
+
+ Normal mode
+	z normal mode je mozno prejit do Command modu :
+	z normal mode je mozno prejit do Insert modu i,a,o,O atd
+	z normal mode je mozno prejit do Visual modu V , shift V a asi vice zpusovy
+ Visual mode
+	VISUAL tady oznacujeme bloky textu nezavysle na celych radkach
+		tady je mozno oznacovat bloky, mazat(d),kopirovat(y),vkladat(p), menit(c)
+	VISUAL LINE tady oznacujeme bloky textu po celych radkach
+		stejny postup, ale s oznacenym textem je mozne hejbat > < odsazeni
+	VISUAL BLOCK tady se pracuje s bloky sloupcoradky , mozna oznacit x radku dat A napsat treba koment a dat ESC
+	(bacha u WLS nefunguje, je potreba si premapovat ^C na treba q v ~/.vimrc dat nnoremap q <c-v>)
+ Insert mode 
+		tady editujeme text
+		
+z Visual a Insert modu se vraci do normal modu ESC
+
+
+Uložení
+Pro uložení vyskočíme s pomocí klávesy Esc zpět do příkazového režimu. V něm stiskneme dvojtečku a stiskneme w jako write.
+Ve spodní části editoru se nám oba znaky objeví
+:w
+Poté stiskneme Enter a soubor se nám uloží. 
+Pokud pak stiskneme Insert, můžeme zase pokračovat v editaci. 
+V případě, že chceme změnit název souboru, stačí nový název jednoduše zapsat za w
+:w novy_nazev.txt
+Ukončení
+Pokud jsme uložili a chceme ukončit práci, v příkazovém režimu stiskneme opět dvojtečku a k tomu q jako quit. 
+Opět se nám na posledním řádku znaky objeví
+:q
+V případě, že chceme zároveň uložit a skončit, můžeme oba příkazy zkombinovat. V příkazovém režimu tedy zadáme
+:wq (ZZ)
+Nechceme-li změny uložit, editor nás standardním :q nepustí a napíše, že soubor není od posledního zápisu uložen. 
+V tom případě (pokud jsme si jisti, že to chceme), opustíme editor bez ukládání s pomocí kombinace dvojtečky q a vykřičníku.
+:q!
+
+i insert
+o new line a insert mode
+O previous a insert
+
+s maze znak a muzes zapisovat
+S smaze cely radek a muzes editovat
+dd smaze radek
+dcislod smaze pocet radek podle zadaneho cisla
+u undo
+C/R redo
+
+0 nula posle te na zacatek radku
+$ posle te na konec radky
+gg posle te na zacatek souboru
+
+yy zkopiruje radku p vlozi
+Shift V - oznaci vice radku se sipkami
+y zkopiruje, p vlozi
+
+:set number - zacne radkovat
+:cislo presune te na radek s cislem cislo
+
+:set nonumber - skonci s radkovanim
+
+vyhledavani /hledanytext
+enter n dalsi N predchozi
+
+nahrazeni :%s/text/nahrazeni/g(vic nez jeden na radek)i(case insensitive)c(confirmation)
+
+
+
+
+:set ignorecase or :set ic 
+:set noignorecase or :set noic
+
+
+:set paste
+:set nopaste
+
+:help
+
+
+https://www.itnetwork.cz/linux/tipy-a-triky/vim-editor-zaklady
+
+Vim cheat sheety
+https://vim.rtorr.com/
+https://devhints.io/vim
+https://vimsheet.com/
+
+no a nakonec Vam ukazu jak sem si nastavil vim v praci a je mi uz tezko bez tohoto nastaveni neco ve vimu delat
+do ~/.vimrc dam toto:
+nnoremap q <c-v>
+
+set cursorcolumn
+set cursorline
+
+" by default, the indent is 2 spaces.
+set shiftwidth=2
+set softtabstop=2
+set tabstop=2
+"
+colorscheme desert
+"
+" " for html/rb files, 2 spaces
+autocmd Filetype html setlocal ts=2 sw=2 expandtab
+autocmd Filetype ruby setlocal ts=2 sw=2 expandtab
+"
+" " for js/coffee/jade files, 4 spaces
+autocmd Filetype javascript setlocal ts=4 sw=4 sts=0 expandtab
+autocmd Filetype coffeescript setlocal ts=4 sw=4 sts=0 expandtab
+autocmd Filetype jade setlocal ts=4 sw=4 sts=0 expandtab
+"
+set mouse=a
+set wrap
+" Status bar
+set laststatus=2
+"
+" " Set status line display
+set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ [BUFFER=%n]\ %{strftime('%c')}
