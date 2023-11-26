@@ -1,1 +1,21 @@
+Pokročilejší práce v linuxové řádce
+------------------------------------
+Nezapomeňte dát odběr a laik :)
+
+https://www.youtube.com/@CzechITHub
+
+Miniserie pokrocilejsi prace Linux cli
+dil 1 - neco o terminalu, historii, a ovladani
+
+!!
+history ukaze prikazy a cisla u nich, kdyz chci spustit prikaz s cilem treba 123 napisi !123
+HISTTIMEFORMAT="%Y-%m-%d %T " a pak das history, to je dobry dat do ~/.bashrc
+Ctrl + L = clear
+Ctrl + u odstrani vse z prikazove radky, at se s tim nemusis mazat
+Ctrl + a hodi te na zacatek prikazove radky
+Ctrl + e hodi te na konec prikazove radky
+Ctrl + z posle aktualni program do pozadi
+fg
+Ctrl + +/- meni velikost pisma stejne tak Ctrl + kroutitko na mysi
+column -t kdyz zadas do paipy za prikaz,treba mount a pak zmencis fonty nerozpadne se ti
 
