@@ -1,0 +1,10 @@
+Pokročilejší práce v linuxové řádce
+------------------------------------
+Nezapomeňte dát odběr a laik :)
+
+https://www.youtube.com/@CzechITHub
+
+Miniserie pokrocilejsi prace Linux cli
+dil 2 - neco informaci o linuxovem stroji 
+hostnamectl, hostname -I, getent(passwd,group,hosts,services), w, netstat
+
