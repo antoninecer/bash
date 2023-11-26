@@ -15,7 +15,7 @@ Ctrl + u odstrani vse z prikazove radky, at se s tim nemusis mazat
 Ctrl + a hodi te na zacatek prikazove radky
 Ctrl + e hodi te na konec prikazove radky
 Ctrl + z posle aktualni program do pozadi
-fg
+fg vrati program z pozadi na popredi
 Ctrl + +/- meni velikost pisma stejne tak Ctrl + kroutitko na mysi
 column -t kdyz zadas do paipy za prikaz,treba mount a pak zmencis fonty nerozpadne se ti
 
