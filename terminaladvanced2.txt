@@ -6,5 +6,9 @@ https://www.youtube.com/@CzechITHub
 
 Miniserie pokrocilejsi prace Linux cli
 dil 2 - neco informaci o linuxovem stroji 
-hostnamectl, hostname -I, getent(passwd,group,hosts,services), w, netstat
+hostnamectl, getent(passwd,group,hosts,services), w, load average(top,htop,uptime), opingani sady stroju
+syntaxe : for promenna in {1..30};do prikaz s $promennou;done
+- pokud mate treba soubor a chcete nacist radky tak in $(<soubor) 
+- pokud chcete vystup jine sady prikazu priklad cat soubor|grep hledanyretezec|awk '{print $3}' tak to obalite zavorkami a pred ne date $
+
 
