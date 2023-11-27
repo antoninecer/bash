@@ -26,8 +26,13 @@ Linux
 
 
 Advanced techniky 
-- zaklady prace s terminalem, historie, spusteni prikazu z historie, fg
+MINISERIE pokrocile techniky v prikazove radce
+- Díl 1 : zaklady prace s terminalem, historie, spusteni prikazu z historie, fg
   https://youtu.be/GHP0OTiObH4
+
+- Díl 2 : zjisteni stavu pocitace: w, getent, hostnamectl, top, htop, uptime, jednorakdkove tajemstvi cyklu for
+  https://youtu.be/xvXHqUtU2qo
+  
 - dohledani kdo kdy byl prihlasen a kdo se vam snazil prihlasit neopravnene do systemu
 	použití příkazu last, lastb, awk, sed, cat, sort, wc
 	https://youtu.be/WKghag7AlNw
