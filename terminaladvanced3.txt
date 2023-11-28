@@ -1,0 +1,8 @@
+Pokročilejší práce v linuxové řádce
+------------------------------------
+Nezapomeňte dát odběr a laik :)
+
+https://www.youtube.com/@CzechITHub
+
+Miniserie pokrocilejsi prace Linux cli
+dil 3 - ssh ssh-keygen, ssh-copy-id, terminalovy multiplexor
