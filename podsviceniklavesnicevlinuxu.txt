@@ -1,0 +1,21 @@
+Problem: Podsviceni klavesnice  nefunguje
+System Linux LMDE (Linux Mint - Debian12)
+reseni:
+Pouze pro graficky mod - bash
+xset led on
+
+sudo vim /usr/local/bin/kbdlight
+#! /bin/bash
+xset led on 
+
+sudo chmod +x /usr/local/bin/kbdlight
+
+pridat po loginu: 
+do ~/.config/autostart
+soubor s priponou .desktop
+
+[Desktop Entry]
+Name=Keyboard_LED_ON
+Exec=/usr/local/bin/kbdlight
+Type=Application
+StartupNotify=false
