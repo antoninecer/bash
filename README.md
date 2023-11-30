@@ -56,6 +56,9 @@ bash06 - https://youtu.be/3nFoDaK3RL8
 bash07 - https://youtu.be/psJCJS4SoUo
 bash08 - https://youtu.be/qBj12dpyAlQ
 
+Co se jinam neveslo:
+Jak na podsviceni klavesnice v linuxu - https://youtu.be/67qtO45XbQQ
+
 Udělejte si fork a nahrávejte si sem váš kód, za pár týdnů, jako když ho najdete a do komentářů k videu se chlubte svým kódem a ptejte se.
 
 Tonda
