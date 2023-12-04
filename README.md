@@ -42,6 +42,8 @@ MINISERIE pokrocile techniky v prikazove radce
 	https://youtu.be/kGWmHO09_uQ
 - prace s uzivately,pravy a rozsirenymi pravy ACL 
 	https://youtu.be/G7Ux9mX306c
+- nadstavba nad APT Nala , už na svých Debian based serverech přestávám používat APT
+  	https://www.youtube.com/watch?v=4gNyPe8hUHk
 
 
 Minikurz BASHe 8 dilu a jeden bonus k druhe kapitole
