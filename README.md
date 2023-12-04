@@ -41,7 +41,7 @@ Ahoj lidi, dělám to pro Vás, tak mne potěšte odběrem.
 
 ## Nadstavba nad APT - Nala
 
-- **Už na svých Debian based serverech přestávám používat APT:** [Video zde](https://www.youtube.com/watch?v=4gNyPe8hUHk)
+- **Už na svých Debian based serverech přestávám používat APT:** [Video zde](https://youtu.be/82BygjO3ilM)
 
 ## Minikurz BASHe
 
