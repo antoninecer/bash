@@ -50,6 +50,7 @@ Osmidílný minikurz a jeden bonus k druhé kapitole. [Playlist zde](https://www
 ## Co se jinam nevešlo
 
 - **Jak na podsvícení klávesnice v Linuxu:** [Video zde](https://youtu.be/67qtO45XbQQ)
+- **Chatbot GPT jako domácí právník:** [Video zde](https://www.youtube.com/LYUfIWmzv7k)
 
 ## Přispějte
 
