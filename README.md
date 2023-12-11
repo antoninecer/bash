@@ -2,6 +2,11 @@
 
 Ahoj lidi, dělám to pro Vás, tak mne potěšte odběrem.
 
+## Videa za použití AI
+
+- **Tady je playlist na SCI-FI videa:** SCI-FI by Já a AI. [Video zde](https://www.youtube.com/playlist?list=PLvz7xV2fFVIXPst21pFpfitYmAjRn095F)
+
+
 ## Homelab
 
 - **Jak může vypadat homelab:** Ukázka, jak to mám doma. [Video zde](https://youtu.be/GHJMDWKpiOU)
@@ -54,4 +59,4 @@ Osmidílný minikurz a jeden bonus k druhé kapitole. [Playlist zde](https://www
 
 ## Přispějte
 
-Udělejte si fork a nahrávejte si sem váš kód, za pár týdnů, jako když ho naj
+Udělejte si fork a nahrávejte si sem váš kód, za pár týdnů, jako když ho najdete :)
