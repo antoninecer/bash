@@ -4,7 +4,7 @@ Ahoj lidi, dělám to pro Vás, tak mne potěšte odběrem.
 
 ## Videa za použití AI
 
-- **Tady je playlist na SCI-FI videa:** SCI-FI by Já a AI. [Video zde](https://www.youtube.com/playlist?list=PLvz7xV2fFVIXPst21pFpfitYmAjRn095F)
+- **Tady je playlist na SCI-FI videa:** SCI-FI by Já a AI. [Playlist zde](https://www.youtube.com/playlist?list=PLvz7xV2fFVIXPst21pFpfitYmAjRn095F)
 
 
 ## Homelab
