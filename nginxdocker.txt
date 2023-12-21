@@ -1,0 +1,70 @@
+https://youtu.be/5euQkfpHgls?si=L6Hu-m9Xi_SfsWJd
+
+In this detailed guide, you'll learn how to set up a reverse proxy and DNS using NGINX for Docker webs, including configuring port forwarding. We'll show you how to effectively combine these technologies to enhance security and accessibility in your SOHO (Small Office/Home Office) environment. This video is ideal for those looking to expand their knowledge in network infrastructure and seeking a practical way to secure and optimize their home or small office networks.
+
+NGINX Reverse Proxy
+
+- some docker example
+(docker hub)
+version: '3.1'
+services:
+  easyapointments:
+    image: 'alextselegidis/easyappointments:1.4.3'
+    environment:
+      - BASE_URL=http://real.dns.name
+      - DEBUG_MODE=TRUE
+      - DB_HOST=mysql
+      - DB_NAME=easyappointments
+      - DB_USERNAME=root
+      - DB_PASSWORD=secret
+    ports:
+      - '8009:80'
+  mysql:
+    image: 'mysql:8.0'
+    volumes:
+      - './docker/mysql:/var/lib/mysql'
+    environment:
+      - MYSQL_ROOT_PASSWORD=secret
+      - MYSQL_DATABASE=easyappointments
+
+
+netstat -plntu
+docker-compose up -d
+netstat -plntu
+
+- musi existovat DNS 
+
+
+- definice nginx
+/etc/nginx/sites-enabled
+
+server {
+        server_name easy.nanavsi.com;
+
+        location / {
+                proxy_pass http://192.168.0.111:8009;
+                proxy_redirect          off;
+                proxy_set_header        Host            $host;
+                proxy_set_header        X-Real-IP       $remote_addr;
+                proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
+                client_max_body_size    10m;
+                client_body_buffer_size 128k;
+                proxy_connect_timeout   90;
+                proxy_send_timeout      90;
+                proxy_read_timeout      90;
+        }
+    listen 80;
+}
+
+after install start certbot to crete ssl certs
+select site and redirect to https
+
+nginx -t 
+for test if everythin is ok
+
+nginx -s reload 
+this will reload configuration withot close existing connections
+
+ater that please edit docker-compose.yml and add s to https:// :)
+
+again docker-compose up -d
